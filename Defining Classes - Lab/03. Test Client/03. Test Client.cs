@@ -53,8 +53,7 @@ public class Program
         }
         else
         {
-            acc.Id = accountId;
-            accountsDB.Add(accountId, acc);
+            accountsDB.Add(accountId, new BankAccount());
         }
     }
     public static void Withdraw(Dictionary<int, BankAccount> accountsDB, string[] inputArgs, int accountId)
