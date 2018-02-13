@@ -10,7 +10,7 @@ public class Program
         var acc = new BankAccount();
         while (input != "End")
         {
-            var inputArgs = input.Split(' ');
+            var inputArgs = input.Split();
             var command = inputArgs[0];
             var accountId = int.Parse(inputArgs[1]);
             acc.Id = accountId;
