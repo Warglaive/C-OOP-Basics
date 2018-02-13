@@ -17,54 +17,72 @@ public class Program
             switch (command)
             {
                 case "Create":
-                    if (accountsDB.ContainsKey(accountId))
-                    {
-                        Console.WriteLine("Account already exists");
-                    }
-                    else
-                    {
-                        acc.Id = accountId;
-                        accountsDB.Add(accountId, acc);
-                    }
+                    Create(accountsDB, accountId, acc);
                     break;
                 case "Deposit":
-                    var amount = int.Parse(inputArgs[2]);
-                    if (!accountsDB.ContainsKey(accountId))
-                    {
-                        Console.WriteLine("Account does not exist");
-                    }
-                    else
-                    {
-                        accountsDB[accountId].Deposit(amount);
-                    }
+                    Deposit(accountsDB, inputArgs, accountId);
                     break;
                 case "Withdraw":
-                    var withdrawAmount = decimal.Parse(inputArgs[2]);
-                    if (!accountsDB.ContainsKey(accountId))
-                    {
-                        Console.WriteLine("Account does not exist");
-                        break;
-                    }
-                    if (withdrawAmount > acc.Balance)
-                    {
-                        Console.WriteLine("Insufficient balance");
-                    }
-                    else
-                    {
-                        acc.Withdraw(withdrawAmount);
-                    }
+                    Withdraw(accountsDB, inputArgs, accountId);
                     break;
                 case "Print":
-                    if (!accountsDB.ContainsKey(accountId))
-                    {
-                        Console.WriteLine("Account does not exist");
-                        break;
-                    }
-                    Console.WriteLine($"Account ID{acc.Id}" +
-                                      $", balance {acc.Balance:f2}");
+                    Print(accountsDB, inputArgs, accountId);
                     break;
             }
             input = Console.ReadLine();
         }
+    }
+
+    public static void Deposit(Dictionary<int, BankAccount> accountsDB, string[] inputArgs, int accountId)
+    {
+        var amount = int.Parse(inputArgs[2]);
+        if (!accountsDB.ContainsKey(accountId))
+        {
+            Console.WriteLine("Account does not exist");
+        }
+        else
+        {
+            accountsDB[accountId].Deposit(amount);
+        }
+    }
+    public static void Create(Dictionary<int, BankAccount> accountsDB, int accountId, BankAccount acc)
+    {
+        if (accountsDB.ContainsKey(accountId))
+        {
+            Console.WriteLine("Account already exists");
+        }
+        else
+        {
+            acc.Id = accountId;
+            accountsDB.Add(accountId, acc);
+        }
+    }
+    public static void Withdraw(Dictionary<int, BankAccount> accountsDB, string[] inputArgs, int accountId)
+    {
+        var withdrawAmount = decimal.Parse(inputArgs[2]);
+        if (!accountsDB.ContainsKey(accountId))
+        {
+            Console.WriteLine("Account does not exist");
+            return;
+        }
+        if (withdrawAmount > accountsDB[accountId].Balance)
+        {
+            Console.WriteLine("Insufficient balance");
+        }
+        else
+        {
+            accountsDB[accountId].Withdraw(withdrawAmount);
+        }
+    }
+
+    public static void Print(Dictionary<int, BankAccount> accountsDB, string[] inputArgs, int accountId)
+    {
+        if (!accountsDB.ContainsKey(accountId))
+        {
+            Console.WriteLine("Account does not exist");
+            return;
+        }
+        Console.WriteLine($"Account ID{accountsDB[accountId].Id}" +
+                          $", balance {accountsDB[accountId].Balance:f2}");
     }
 }
