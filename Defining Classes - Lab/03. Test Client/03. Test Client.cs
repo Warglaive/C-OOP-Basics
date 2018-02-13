@@ -24,7 +24,7 @@ public class Program
                     else
                     {
                         acc.Id = accountId;
-                        accountsDB.Add(acc.Id, acc);
+                        accountsDB.Add(accountId, acc);
                     }
                     break;
                 case "Deposit":
@@ -35,7 +35,7 @@ public class Program
                     }
                     else
                     {
-                        acc.Deposit(amount);
+                        accountsDB[accountId].Deposit(amount);
                     }
                     break;
                 case "Withdraw":
@@ -61,7 +61,7 @@ public class Program
                         break;
                     }
                     Console.WriteLine($"Account ID{acc.Id}" +
-                                      $", balance {acc.Balance:f2}.");
+                                      $", balance {acc.Balance:f2}");
                     break;
             }
             input = Console.ReadLine();

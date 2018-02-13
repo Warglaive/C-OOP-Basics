@@ -2,8 +2,20 @@
 
 public class BankAccount
 {
-    public int Id { get; set; }
-    public decimal Balance { get; set; }
+    private int id;
+    private decimal balance;
+
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public decimal Balance
+    {
+        get { return balance; }
+        set { balance = value; }
+    }
 
     public void Deposit(decimal amount)
     {
@@ -15,4 +27,3 @@ public class BankAccount
         Balance -= amount;
     }
 }
-
