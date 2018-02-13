@@ -81,7 +81,7 @@ public class Program
             Console.WriteLine("Account does not exist");
             return;
         }
-        Console.WriteLine($"Account ID{accountsDB[accountId].Id}" +
+        Console.WriteLine($"Account ID{inputArgs[1]}" +
                           $", balance {accountsDB[accountId].Balance:f2}");
     }
 }

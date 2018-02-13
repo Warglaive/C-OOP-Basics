@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01. Bank Account", "01. Ban
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Bank Account Methods", "02. Bank Account Methods\02. Bank Account Methods.csproj", "{AF0FE151-C632-45E9-B7D3-1EB955EF7FFB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03. Test Client", "03. Test Client\03. Test Client.csproj", "{ED4ECEB2-D507-48AF-9451-37CA5EEC0CB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.TestClient", "03. Test Client\03.TestClient.csproj", "{ED4ECEB2-D507-48AF-9451-37CA5EEC0CB9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04. Person Class", "04. Person Class\04. Person Class.csproj", "{2C949D87-BDB5-4248-B088-D62FA277BCE0}"
 EndProject
