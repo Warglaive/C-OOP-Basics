@@ -44,6 +44,32 @@ public class Program
 
         }
         var lastLine = Console.ReadLine();
-        //PRINT
+        switch (lastLine)
+        {
+            case "fragile":
+                var fragile = totalCars
+                                 .Where(c => c.Cargo.CargoType == "fragile")
+                                 .Where(t => t.Tires.Tire1Pressure < 1
+                                             || t.Tires.Tire2Pressure < 1
+                                             || t.Tires.Tire3Pressure < 1
+                                             || t.Tires.Tire4Pressure < 1)
+                                             .Select(x => x.Model)
+                                             .ToList();
+                foreach (var car in fragile)
+                {
+                    Console.WriteLine(car);
+                }
+                break;
+            case "flamable":
+                var flammeble = totalCars.Where(c => c.Cargo.CargoType == "flamable")
+                    .Where(e => e.Engine.EnginePower > 250)
+                    .Select(x=>x.Model)
+                    .ToList();
+                foreach (var car in flammeble)
+                {
+                    Console.WriteLine(car);
+                }
+                break;
+        }
     }
 }
