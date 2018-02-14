@@ -6,52 +6,48 @@ using System.Text;
 public class Car
 {
     private string model;
-    private double fuelAmount;
-    private double fuelConsumptionFor1km;
-    private double distanceTraveled;
+    private decimal fuelAmount;
+    private decimal fuelConsumptionFor1km;
+    private decimal distanceTraveled;
 
     public string Model
     {
         get => model;
         set => model = value;
     }
-    public double FuelAmount
+    public decimal FuelAmount
     {
         get => fuelAmount;
         set => fuelAmount = value;
     }
-    public double FuelConsumptionFor1km
+    public decimal FuelConsumptionFor1km
     {
         get => fuelConsumptionFor1km;
         set => fuelConsumptionFor1km = value;
     }
 
-    public double DistanceTraveled
+    public decimal DistanceTraveled
     {
         get => distanceTraveled;
         set => distanceTraveled = value;
     }
     //list cars
 
-    public Car CanTheCarMoveDistance(List<Car> takeListCars, string model, double distanceToMove)
+    public void CanTheCarMoveDistance(HashSet<Car> takeListCars, string givenModel, decimal distanceToMove)
     {
         var filterModels = takeListCars
-            .Where(x => x.model == model)
+            .Where(x => x.model == givenModel)
             .ToList();
-        var currentCar = filterModels[0];
-        //To do
-        var maxTravelDistance = currentCar.FuelAmount * currentCar.FuelConsumptionFor1km;
+        var currentCar = filterModels.FirstOrDefault();
 
-        if (maxTravelDistance >= distanceToMove)
+        if (distanceToMove <= currentCar.fuelAmount / currentCar.FuelConsumptionFor1km)
         {
-            currentCar.FuelAmount -= currentCar.FuelAmount;
-            currentCar.DistanceTraveled += maxTravelDistance;
-
+            currentCar.fuelAmount -= currentCar.FuelConsumptionFor1km * distanceToMove;
+            currentCar.distanceTraveled += distanceToMove;
         }
         else
         {
             Console.WriteLine("Insufficient fuel for the drive");
         }
-        return currentCar;
     }
 }
