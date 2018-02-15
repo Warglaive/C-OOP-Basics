@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.RhombusofStars", "01.Rho
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.PointinRectangle", "02.PointinRectangle\02.PointinRectangle.csproj", "{105D5D5B-2A5A-4200-B32D-54645E54B383}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentSystem", "03. StudentSystem\StudentSystem.csproj", "{9DB31853-7421-43DB-BE74-C92CB49214F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.StudentSystem", "03. StudentSystem\03.StudentSystem.csproj", "{9DB31853-7421-43DB-BE74-C92CB49214F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.HotelReservation", "04.HotelReservation\04.HotelReservation.csproj", "{5E09C15F-5E5C-4FF7-8BC6-19B50990D757}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{9DB31853-7421-43DB-BE74-C92CB49214F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB31853-7421-43DB-BE74-C92CB49214F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB31853-7421-43DB-BE74-C92CB49214F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E09C15F-5E5C-4FF7-8BC6-19B50990D757}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E09C15F-5E5C-4FF7-8BC6-19B50990D757}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E09C15F-5E5C-4FF7-8BC6-19B50990D757}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E09C15F-5E5C-4FF7-8BC6-19B50990D757}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
