@@ -31,7 +31,7 @@ public class Program
         }
         if (rectList.Count < 2)
         {
-            Console.WriteLine("true");
+            Console.WriteLine("false");
             return;
         }
         for (var i = 0; i < intersectionChecks; i++)
@@ -48,6 +48,7 @@ public class Program
             {
                 A = firstId[0];
             }
+
             if (secondId.Count > 0)
             {
                 B = secondId[0];
