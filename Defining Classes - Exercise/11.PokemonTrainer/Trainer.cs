@@ -5,16 +5,15 @@ using System.Text;
 
 public class Trainer
 {
-    private string name;
+    private string trainerName;
     private int badgesCount;
     private List<Pokemon> pokemons;
 
-    public string Name
+    public string TrainerName
     {
-        get => name;
-        set => name = value;
+        get => trainerName;
+        set => trainerName = value;
     }
-
     public int BadgesCount
     {
         get => badgesCount;
@@ -27,10 +26,10 @@ public class Trainer
         set => pokemons = value;
     }
 
-    public Trainer(string name, int badgesCount, List<Pokemon> pokemons)
+    public Trainer(string TrainerName, int BadgesCount, List<Pokemon> Pokemons)
     {
-        this.name = name;
-        this.badgesCount = badgesCount;
-        this.pokemons = pokemons;
+        this.trainerName = TrainerName;
+        this.badgesCount = BadgesCount;
+        this.pokemons = Pokemons;
     }
 }
