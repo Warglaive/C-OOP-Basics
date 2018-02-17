@@ -26,4 +26,11 @@ public class Trainer
         get => pokemons;
         set => pokemons = value;
     }
+
+    public Trainer(string name, int badgesCount, List<Pokemon> pokemons)
+    {
+        this.name = name;
+        this.badgesCount = badgesCount;
+        this.pokemons = pokemons;
+    }
 }

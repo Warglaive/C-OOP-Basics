@@ -32,12 +32,21 @@ public class Program
 
             input = Console.ReadLine();
         }
-        var elementsInput = Console.ReadLine();
-        while (elementsInput != "End")
+        var currentElement = Console.ReadLine();
+        while (currentElement != "End")
         {
+            //if a trainer has at least 1 pokemon with the given element
+            foreach (var currentTrainer in result)
+            {
+                //var filterElements = currentTrainer
+                //    .Value.Where(e => e.Element == currentElement).Any();
+                if (currentTrainer
+                    .Value.Where(e => e.Element == currentElement).Any())
+                {
 
-            elementsInput = Console.ReadLine();
+                }
+            }
+            currentElement = Console.ReadLine();
         }
-        //Where name != null - print, else - ignore
     }
 }
