@@ -7,9 +7,8 @@ public class Program
     public static void Main()
     {
         //dictionary trainer - key, pokemonsList-value
-        var result = new Dictionary<Trainer, List<Pokemon>>();
+        var result = new Dictionary<string, List<Pokemon>>();
         var input = Console.ReadLine();
-        var pokeList = new List<Pokemon>();
         while (input != "Tournament")
         {
             var currentTrainer = new Trainer();
@@ -19,14 +18,17 @@ public class Program
                     , StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
 
+            var currentTrainerName = inputArgs[0];
+            currentTrainer.Name = inputArgs[0];
+
             currentPokemon.Name = inputArgs[1];
             currentPokemon.Element = inputArgs[2];
             currentPokemon.Health = int.Parse(inputArgs[3]);
-
-            pokeList.Add(currentPokemon);
-
-            currentTrainer.Pokemons = pokeList;
-
+            if (!result.ContainsKey(currentTrainerName))
+            {
+                result.Add(currentTrainerName, new List<Pokemon>());
+            }
+            result[currentTrainerName].Add(currentPokemon);
 
             input = Console.ReadLine();
         }
