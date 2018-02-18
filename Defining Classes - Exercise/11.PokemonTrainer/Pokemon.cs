@@ -1,24 +1,25 @@
-﻿public class Pokemon
+﻿
+public class Pokemon
 {
     private string name;
     private string element;
-    private decimal health;
+    private int health;
 
-    public string Name
+    public int Health
     {
-        get => name;
-        set => name = value;
+        get { return this.health; }
+        set { this.health = value; }
     }
 
     public string Element
     {
-        get => element;
-        set => element = value;
+        get { return this.element; }
+        set { this.element = value; }
     }
 
-    public decimal Health
+    public string Name
     {
-        get => health;
-        set => health = value;
+        get { return this.name; }
+        set { this.name = value; }
     }
 }

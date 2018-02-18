@@ -1,33 +1,34 @@
-﻿using System.Collections.Generic;
+﻿
+    using System.Collections.Generic;
 
-
-public class Trainer
-{
-    private string trainerName;
-    private decimal badgesCount;
-    private List<Pokemon> pokemons;
-
-    public string TrainerName
+    public class Trainer
     {
-        get => trainerName;
-        set => trainerName = value;
-    }
-    public decimal BadgesCount
-    {
-        get => badgesCount;
-        set => badgesCount = value;
-    }
+        private string name;
+        private int badges;
+        private List<Pokemon> pokemons;
 
-    public List<Pokemon> Pokemons
-    {
-        get => pokemons;
-        set => pokemons = value;
-    }
+        public Trainer(string name)
+        {
+            this.Name = name;
+            this.Badges = 0;
+            this.Pokemons = new List<Pokemon>();
+        }
 
-    public Trainer(string TrainerName, decimal BadgesCount, List<Pokemon> Pokemons)
-    {
-        this.trainerName = TrainerName;
-        this.badgesCount = BadgesCount;
-        this.pokemons = Pokemons;
+        public List<Pokemon> Pokemons
+        {
+            get { return this.pokemons; }
+            set { this.pokemons = value; }
+        }
+
+        public int Badges
+        {
+            get { return this.badges; }
+            set { this.badges = value; }
+        }
+
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
     }
-}

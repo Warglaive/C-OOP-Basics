@@ -1,34 +1,32 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Program
+public class Startup
 {
     public static void Main()
     {
+        Dictionary<string, Trainer> trainers = new Dictionary<string, Trainer>();
         var input = Console.ReadLine();
-        var result = new List<Trainer>();
-        var badgesCount = 0m;
-        var isUnique = true;
-        ReadInputAddToResult(input, result, isUnique, badgesCount);
+        var badgesCount = 0;
+        ReadInputAddToResult(input, trainers);
         var currentElement = Console.ReadLine();
-        WorkWithElements(currentElement, result);
-        //Print
-        Print(result);
+        WorkWithElements(currentElement, trainers);
+        Print(trainers);
     }
 
-    private static void WorkWithElements(string currentElement, List<Trainer> result)
+    private static void WorkWithElements(string currentElement, Dictionary<string, Trainer> trainers)
     {
         while (currentElement != "End")
         {
-            //if a trainer has at least 1 pokemon with the given element
-            foreach (var currentTrainer in result)
+            foreach (var currentTrainer in trainers.Values)
             {
                 if (currentTrainer
                     .Pokemons
                     .Any(e => e.Element == currentElement))
                 {
-                    currentTrainer.BadgesCount++;
+                    currentTrainer.Badges++;
                 }
                 else
                 {
@@ -43,38 +41,23 @@ public class Program
         }
     }
 
-    private static void ReadInputAddToResult(string input, List<Trainer> result, bool isUnique, decimal badgesCount)
+    private static void ReadInputAddToResult(string input, Dictionary<string, Trainer> trainers)
     {
         while (input != "Tournament")
         {
-            var pokeList = new List<Pokemon>();
-            var currentPokemon = new Pokemon();
-            var inputArgs = input.Split(new[] { ' ' }
-                    , StringSplitOptions.RemoveEmptyEntries)
-                .ToList();
+            var inputArgs = input.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             var trainerName = inputArgs[0];
+            var currentPokemon = new Pokemon();
             currentPokemon.Name = inputArgs[1];
             currentPokemon.Element = inputArgs[2];
-            currentPokemon.Health = decimal.Parse(inputArgs[3]);
-            //unique trainer check
-            foreach (var trainerInList in result)
+            currentPokemon.Health = int.Parse(inputArgs[3]);
+            if (!trainers.ContainsKey(trainerName))
             {
-                if (trainerInList.TrainerName == trainerName)
-                {
-                    isUnique = false;
-                    trainerInList.Pokemons.Add(currentPokemon);
-                }
+                trainers[trainerName] = new Trainer(trainerName);
             }
-            if (isUnique)
-            {
-                pokeList.Add(currentPokemon);
-
-                var currentTrainer = new Trainer(trainerName, badgesCount, pokeList);
-                result.Add(currentTrainer);
-            }
+            trainers[trainerName].Pokemons.Add(currentPokemon);
             input = Console.ReadLine();
         }
-        Console.WriteLine();
     }
 
     private static void HealthCheck(Trainer currentTrainer)
@@ -88,12 +71,12 @@ public class Program
         }
     }
 
-    private static void Print(List<Trainer> result)
+    private static void Print(Dictionary<string, Trainer> trainers)
     {
-        foreach (var currentTrainer in result.OrderByDescending(x => x.BadgesCount))
+        foreach (var currentTrainer in trainers.Values.OrderByDescending(x => x.Badges))
         {
-            Console.WriteLine($"{currentTrainer.TrainerName} " +
-                              $"{currentTrainer.BadgesCount} " +
+            Console.WriteLine($"{currentTrainer.Name} " +
+                              $"{currentTrainer.Badges} " +
                               $"{currentTrainer.Pokemons.Count}");
         }
     }
