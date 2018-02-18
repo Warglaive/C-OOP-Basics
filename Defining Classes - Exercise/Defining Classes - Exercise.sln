@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "10.CarSalesman", "10. Car S
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "11.PokemonTrainer", "11.PokemonTrainer\11.PokemonTrainer.csproj", "{89E1C7D7-D25F-4825-BF68-E5F0B8AAA3E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "12. Google", "12. Google\12. Google.csproj", "{0B35B871-C35D-49AF-B922-201A96A24CEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "12.Google", "12. Google\12.Google.csproj", "{0B35B871-C35D-49AF-B922-201A96A24CEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

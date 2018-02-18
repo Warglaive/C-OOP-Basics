@@ -13,6 +13,7 @@ public class Program
         var currentChildren = new Children();
         var currentCar = new Car();
 
+        var currentPerson = new Person();
         while (input != "End")
         {
             var inputArgs = input.Split(new[] { ' ' }
@@ -30,13 +31,13 @@ public class Program
                     AddCar(inputArgs, personName, result);
                     break;
                 case "pokemon": //Multiple
-                    AddPokemon(inputArgs, personName, result);
+                    AddPokemon(currentPerson, inputArgs, personName, result);
                     break;
                 case "parents": //Multiple
-                    AddParents(inputArgs, personName, result);
+                    AddParents(currentPerson, inputArgs, personName, result);
                     break;
                 case "children":
-                    AddChildred(inputArgs, personName, result);
+                    AddChildred(currentPerson,inputArgs, personName, result);
                     break;
             }
             input = Console.ReadLine();
@@ -57,7 +58,8 @@ public class Program
                 //Null check
                 if (currentPerson.Value.Company != null)
                 {
-                    Console.WriteLine($"{currentPerson.Value.Company.CompanyName} {currentPerson.Value.Company.Salary:f2}");
+                    Console.WriteLine($"{currentPerson.Value.Company.CompanyName} " +
+                                      $"{currentPerson.Value.Company.Department} {currentPerson.Value.Company.Salary:f2}");
                 }
 
                 //Print Car 2nd
@@ -106,52 +108,77 @@ public class Program
         }
     }
 
-    private static void AddChildred(List<string> inputArgs, string personName, Dictionary<string, Person> result)
+    private static void AddChildred(Person currentPerson, List<string> inputArgs, string personName, Dictionary<string, Person> result)
     {
         //add to currentChildren
-        var childrenList = new List<Children>();
         var currentChildren = new Children();
         currentChildren.ChildName = inputArgs[2];
         currentChildren.ChildBirthday = inputArgs[3];
         //add to currentPerson
-        childrenList.Add(currentChildren);
+        if (currentPerson.Children == null)
+        {
+            currentPerson.Children = new List<Children>();
+        }
+        currentPerson.Children.Add(currentChildren);
+
         if (!result.ContainsKey(personName))
         {
             result.Add(personName, new Person());
         }
-        result[personName].Children = childrenList;
+        if (result[personName].Children == null)
+        {
+            result[personName].Children = new List<Children>();
+        }
+        result[personName].Children.Add(currentChildren);
     }
 
-    private static void AddParents(List<string> inputArgs, string personName, Dictionary<string, Person> result)
+    private static void AddParents(Person currentPerson, List<string> inputArgs, string personName, Dictionary<string, Person> result)
     {
         //add to currentParents
-        var parentsList = new List<Parents>();
         var currentParents = new Parents();
         currentParents.ParentName = inputArgs[2];
         currentParents.ParentBirthday = inputArgs[3];
-        //add to currentPerson
-        parentsList.Add(currentParents);
+        ////add to currentPerson
+
+        if (currentPerson.Parents == null)
+        {
+            currentPerson.Parents = new List<Parents>();
+        }
+        currentPerson.Parents.Add(currentParents);
+
         if (!result.ContainsKey(personName))
         {
             result.Add(personName, new Person());
         }
-        result[personName].Parents = parentsList;
+        if (result[personName].Parents == null)
+        {
+            result[personName].Parents = new List<Parents>();
+        }
+        result[personName].Parents.Add(currentParents);
     }
 
-    private static void AddPokemon(List<string> inputArgs, string personName, Dictionary<string, Person> result)
+    private static void AddPokemon(Person currentPerson, List<string> inputArgs, string personName, Dictionary<string, Person> result)
     {
         //add to currentPokemon
-        var pokeList = new List<Pokemon>();
         var currentPokemon = new Pokemon();
         currentPokemon.PokemonName = inputArgs[2];
         currentPokemon.PokemonType = inputArgs[3];
         //add to currentPerson
-        pokeList.Add(currentPokemon);
+        if (currentPerson.Pokemon == null)
+        {
+            currentPerson.Pokemon = new List<Pokemon>();
+        }
+        currentPerson.Pokemon.Add(currentPokemon);
+
         if (!result.ContainsKey(personName))
         {
             result.Add(personName, new Person());
         }
-        result[personName].Pokemon = pokeList;
+        if (result[personName].Pokemon == null)
+        {
+            result[personName].Pokemon = new List<Pokemon>();
+        }
+        result[personName].Pokemon.Add(currentPokemon);
     }
 
     private static void AddCar(List<string> inputArgs, string personName, Dictionary<string, Person> result)
