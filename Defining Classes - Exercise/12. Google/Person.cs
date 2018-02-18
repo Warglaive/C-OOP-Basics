@@ -4,18 +4,47 @@ using System.Text;
 
 public class Person
 {
-    private string name;
     private Company company;
-    private Parents parents;
-    private Children children;
+    private List<Pokemon> pokemons;
+    private List<Parents> parents;
+    private List<Children> children;
     private Car car;
 
-    public void Person(string Name, Company Company, Parents Parents, Children Children, Car Car)
+    public Company Company
     {
-        this.name = Name;
-        this.company = Company;
-        this.parents = Parents;
-        this.children = Children;
-        this.car = Car;
+        get => company;
+        set => company = value;
     }
+
+    public List<Pokemon> Pokemon
+    {
+        get => pokemons;
+        set => pokemons = value;
+    }
+    public List<Parents> Parents
+    {
+        get => parents;
+        set => parents = value;
+    }
+
+    public List<Children> Children
+    {
+        get => children;
+        set => children = value;
+    }
+
+    public Car Car
+    {
+        get => car;
+        set => car = value;
+    }
+
+
+    //public Person(Company Company, Parents Parents, Children Children, Car Car)
+    //{
+    //    this.company = Company;
+    //    this.parents = Parents;
+    //    this.children = Children;
+    //    this.car = Car;
+    //}
 }
