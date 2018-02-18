@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 
 public class Trainer
 {
     private string trainerName;
-    private int badgesCount;
+    private decimal badgesCount;
     private List<Pokemon> pokemons;
 
     public string TrainerName
@@ -14,7 +12,7 @@ public class Trainer
         get => trainerName;
         set => trainerName = value;
     }
-    public int BadgesCount
+    public decimal BadgesCount
     {
         get => badgesCount;
         set => badgesCount = value;
@@ -26,7 +24,7 @@ public class Trainer
         set => pokemons = value;
     }
 
-    public Trainer(string TrainerName, int BadgesCount, List<Pokemon> Pokemons)
+    public Trainer(string TrainerName, decimal BadgesCount, List<Pokemon> Pokemons)
     {
         this.trainerName = TrainerName;
         this.badgesCount = BadgesCount;

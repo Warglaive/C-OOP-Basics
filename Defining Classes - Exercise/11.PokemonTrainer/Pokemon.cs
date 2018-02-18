@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public class Pokemon
+﻿public class Pokemon
 {
     private string name;
     private string element;
-    private int health;
+    private decimal health;
 
     public string Name
     {
@@ -21,7 +16,7 @@ public class Pokemon
         set => element = value;
     }
 
-    public int Health
+    public decimal Health
     {
         get => health;
         set => health = value;
