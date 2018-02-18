@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public class Company
+﻿public class Company
 {
     private string companyName;
     private string department;

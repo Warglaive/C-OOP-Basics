@@ -9,9 +9,6 @@ public class Program
     {
         var input = Console.ReadLine();
         var result = new Dictionary<string, Person>();
-        var currentParents = new Parents();
-        var currentChildren = new Children();
-        var currentCar = new Car();
 
         var currentPerson = new Person();
         while (input != "End")
@@ -37,7 +34,7 @@ public class Program
                     AddParents(currentPerson, inputArgs, personName, result);
                     break;
                 case "children":
-                    AddChildred(currentPerson,inputArgs, personName, result);
+                    AddChildred(currentPerson, inputArgs, personName, result);
                     break;
             }
             input = Console.ReadLine();
@@ -210,4 +207,3 @@ public class Program
         result[personName].Company = currentCompany;
     }
 }
-
