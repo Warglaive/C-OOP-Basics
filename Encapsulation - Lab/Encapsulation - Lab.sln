@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01.Persons", "01.Persons\01.Persons.csproj", "{54B74324-327B-4F0B-8876-16C530504193}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.Persons", "01.Persons\01.Persons.csproj", "{54B74324-327B-4F0B-8876-16C530504193}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02. Salary", "02. Salary\02. Salary.csproj", "{BD26EBFB-3A16-4068-BAFE-D49CE946150B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02. Salary", "02. Salary\02. Salary.csproj", "{BD26EBFB-3A16-4068-BAFE-D49CE946150B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Validation", "03.Validation\03.Validation.csproj", "{270B172B-96CE-497A-B37D-7335C2D718B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.Validation", "03.Validation\03.Validation.csproj", "{270B172B-96CE-497A-B37D-7335C2D718B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.Team", "04.Team\04.Team.csproj", "{19D33D0C-0AD8-4DDB-9FD7-322DDA1C0EDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.Team", "04.Team\04.Team.csproj", "{19D33D0C-0AD8-4DDB-9FD7-322DDA1C0EDE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
