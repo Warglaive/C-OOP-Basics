@@ -2,126 +2,146 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace P05_GreedyTimes
+public class Potato
 {
-
-    public class Potato
+    public static void Main()
     {
-        static void Main(string[] args)
+        string[] storage;
+        Dictionary<string, Dictionary<string, long>> bag;
+        long gold;
+        long gems;
+        long money;
+        var input = ReadInput(out storage, out bag, out gold, out gems, out money);
+
+        AddToStorage(storage, input, bag, gold, gems, money);
+
+        Print(bag);
+    }
+
+    private static void AddToStorage(string[] storage, long input, Dictionary<string, Dictionary<string, long>> bag, long gold, long gems, long money)
+    {
+        for (var i = 0; i < storage.Length; i += 2)
         {
-            long vhod = long.Parse(Console.ReadLine());
-            string[] seif = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            var name = storage[i];
+            var count = long.Parse(storage[i + 1]);
 
-            var torba = new Dictionary<string, Dictionary<string, long>>();
-            long zlato = 0;
-            long kamuni = 0;
-            long mangizi = 0;
+            var type = string.Empty;
 
-            for (int i = 0; i < seif.Length; i += 2)
+            if (name.Length == 3)
             {
-                string name = seif[i];
-                long broika = long.Parse(seif[i + 1]);
+                type = "Cash";
+            }
+            else if (name.ToLower().EndsWith("gem"))
+            {
+                type = "Gem";
+            }
+            else if (name.ToLower() == "gold")
+            {
+                type = "Gold";
+            }
 
-                string kvoE = string.Empty;
+            if (type == "")
+            {
+                continue;
+            }
+            if (input < bag.Values.Select(x => x.Values.Sum())
+                    .Sum() + count)
+            {
+                continue;
+            }
 
-                if (name.Length == 3)
+            if (type == "Gem")
+            {
+                if (!bag.ContainsKey(type))
                 {
-                    kvoE = "Cash";
-                }
-                else if (name.ToLower().EndsWith("gem"))
-                {
-                    kvoE = "Gem";
-                }
-                else if (name.ToLower() == "gold")
-                {
-                    kvoE = "Gold";
-                }
-
-                if (kvoE == "")
-                {
-                    continue;
-                }
-                else if (vhod < torba.Values.Select(x => x.Values.Sum()).Sum() + broika)
-                {
-                    continue;
-                }
-
-                switch (kvoE)
-                {
-                    case "Gem":
-                        if (!torba.ContainsKey(kvoE))
-                        {
-                            if (torba.ContainsKey("Gold"))
-                            {
-                                if (broika > torba["Gold"].Values.Sum())
-                                {
-                                    continue;
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        else if (torba[kvoE].Values.Sum() + broika > torba["Gold"].Values.Sum())
+                    if (bag.ContainsKey("Gold"))
+                    {
+                        if (count > bag["Gold"].Values.Sum())
                         {
                             continue;
                         }
-                        break;
-                    case "Cash":
-                        if (!torba.ContainsKey(kvoE))
-                        {
-                            if (torba.ContainsKey("Gem"))
-                            {
-                                if (broika > torba["Gem"].Values.Sum())
-                                {
-                                    continue;
-                                }
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-                        else if (torba[kvoE].Values.Sum() + broika > torba["Gem"].Values.Sum())
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                else if (bag[type].Values.Sum() + count > bag["Gold"].Values.Sum())
+                {
+                    continue;
+                }
+            }
+            else if (type == "Cash")
+            {
+                if (!bag.ContainsKey(type))
+                {
+                    if (bag.ContainsKey("Gem"))
+                    {
+                        if (count > bag["Gem"].Values.Sum())
                         {
                             continue;
                         }
-                        break;
+                    }
+                    else
+                    {
+                        continue;
+                    }
                 }
-
-                if (!torba.ContainsKey(kvoE))
+                else if (bag[type].Values.Sum() + count > bag["Gem"].Values.Sum())
                 {
-                    torba[kvoE] = new Dictionary<string, long>();
-                }
-
-                if (!torba[kvoE].ContainsKey(name))
-                {
-                    torba[kvoE][name] = 0;
-                }
-
-                torba[kvoE][name] += broika;
-                if (kvoE == "Gold")
-                {
-                    zlato += broika;
-                }
-                else if (kvoE == "Gem")
-                {
-                    kamuni += broika;
-                }
-                else if (kvoE == "Cash")
-                {
-                    mangizi += broika;
+                    continue;
                 }
             }
 
-            foreach (var x in torba)
+            if (!bag.ContainsKey(type))
             {
-                Console.WriteLine($"<{x.Key}> ${x.Value.Values.Sum()}");
-                foreach (var item2 in x.Value.OrderByDescending(y => y.Key).ThenBy(y => y.Value))
-                {
-                    Console.WriteLine($"##{item2.Key} - {item2.Value}");
-                }
+                bag[type] = new Dictionary<string, long>();
+            }
+
+            if (!bag[type].ContainsKey(name))
+            {
+                bag[type][name] = 0;
+            }
+
+            bag[type][name] += count;
+            switch (type)
+            {
+                case "Gold":
+                    gold += count;
+                    break;
+                case "Gem":
+                    gems += count;
+                    break;
+                case "Cash":
+                    money += count;
+                    break;
+            }
+        }
+    }
+
+    private static long ReadInput(out string[] storage, out Dictionary<string, Dictionary<string, long>> bag, out long gold, out long gems, out long money)
+    {
+        var input = long.Parse(Console.ReadLine());
+        storage = Console.ReadLine()
+            .Split(new[] {' '}
+                , StringSplitOptions.RemoveEmptyEntries);
+
+        bag = new Dictionary<string, Dictionary<string, long>>();
+        gold = 0L;
+        gems = 0L;
+        money = 0L;
+        return input;
+    }
+
+    private static void Print(Dictionary<string, Dictionary<string, long>> bag)
+    {
+        foreach (var currentItem in bag)
+        {
+            Console.WriteLine($"<{currentItem.Key}> ${currentItem.Value.Values.Sum()}");
+            foreach (var item2 in currentItem.Value.OrderByDescending(y => y.Key)
+                .ThenBy(y => y.Value))
+            {
+                Console.WriteLine($"##{item2.Key} - {item2.Value}");
             }
         }
     }
