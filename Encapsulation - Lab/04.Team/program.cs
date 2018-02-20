@@ -17,6 +17,6 @@ public class Program
 
         }
         Console.WriteLine($"First team has {teams.FirstTeam.Count} players.");
-        Console.WriteLine($"Reserve team has {teams.ReverseTeam.Count} players.");
+        Console.WriteLine($"Reserve team has {teams.ReserveTeam.Count} players.");
     }
 }

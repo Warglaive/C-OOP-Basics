@@ -5,21 +5,21 @@ public class Team
 {
     private string name;
     private List<Person> firstTeam;
-    private List<Person> reverseTeam;
+    private List<Person> reserveTeam;
 
     public List<Person> FirstTeam
     {
         get => firstTeam;
     }
-    public List<Person> ReverseTeam
+    public List<Person> ReserveTeam
     {
-        get => reverseTeam;
+        get => reserveTeam;
     }
 
     public Team(string name)
     {
         this.firstTeam = new List<Person>();
-        this.reverseTeam = new List<Person>();
+        this.reserveTeam = new List<Person>();
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class Team
         }
         else
         {
-            reverseTeam.Add(player);
+            reserveTeam.Add(player);
         }
     }
 }

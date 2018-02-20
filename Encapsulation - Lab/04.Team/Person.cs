@@ -38,7 +38,7 @@ public class Person
         {
             if (lastName?.Length < 3)
             {
-                throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
+                throw new ArgumentException("Last name cannot contain fewer than 3 symbols!");
             }
             lastName = value;
         }
@@ -59,7 +59,16 @@ public class Person
     public Person(string FirstName, string LastName, int Age, decimal Salary)
     {
         this.firstName = FirstName;
+
         this.lastName = LastName;
+        if (firstName?.Length < 3)
+        {
+            throw new ArgumentException("First name cannot contain fewer than 3 symbols!");
+        }
+        if (lastName?.Length < 3)
+        {
+            throw new ArgumentException("Last name cannot contain fewer than 3 symbols!");
+        }
         this.age = Age;
         this.salary = Salary;
     }
