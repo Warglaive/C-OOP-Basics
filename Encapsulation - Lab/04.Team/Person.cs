@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml.Serialization;
 
 public class Person
 {
@@ -59,10 +58,10 @@ public class Person
     }
     public Person(string FirstName, string LastName, int Age, decimal Salary)
     {
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Age = age;
-        this.Salary = salary;
+        this.firstName = FirstName;
+        this.lastName = LastName;
+        this.age = Age;
+        this.salary = Salary;
     }
     private decimal salary;
 
