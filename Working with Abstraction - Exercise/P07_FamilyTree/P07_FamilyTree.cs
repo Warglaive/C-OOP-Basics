@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace P07_FamilyTree
-{
-    class Program
+
+    class P07_FamilyTree
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var familyTree = new List<Person>();
             string personInput = Console.ReadLine();
@@ -42,6 +41,7 @@ namespace P07_FamilyTree
                         {
                             currentPerson = new Person();
                             currentPerson.Birthday = firstPerson;
+
                             familyTree.Add(currentPerson);
                         }
 
@@ -67,7 +67,9 @@ namespace P07_FamilyTree
                     string name = $"{tokens[0]} {tokens[1]}";
                     string birthday = tokens[2];
 
-                    var person = familyTree.FirstOrDefault(p => p.Name == name || p.Birthday == birthday);
+                    var person = familyTree
+                    .FirstOrDefault(p => p.Name == name 
+                    || p.Birthday == birthday);
                     if (person == null)
                     {
                         person = new Person();
@@ -82,7 +84,9 @@ namespace P07_FamilyTree
                     Person[] copy = new Person[count];
                     familyTree.CopyTo(index, copy, 0, count);
 
-                    Person copyPerson = copy.FirstOrDefault(p => p.Name == name || p.Birthday == birthday);
+                    Person copyPerson = copy
+                    .FirstOrDefault(p => p.Name == name 
+                    || p.Birthday == birthday);
 
                     if (copyPerson != null)
                     {
@@ -98,14 +102,14 @@ namespace P07_FamilyTree
 
             Console.WriteLine(mainPerson);
             Console.WriteLine("Parents:");
-            foreach (var p in mainPerson.Parents)
+            foreach (var currentPerson in mainPerson.Parents)
             {
-                Console.WriteLine(p);
+                Console.WriteLine(currentPerson);
             }
             Console.WriteLine("Children:");
-            foreach (var c in mainPerson.Children)
+            foreach (var currentChild in mainPerson.Children)
             {
-                Console.WriteLine(c);
+                Console.WriteLine(currentChild);
             }
         }
 
@@ -115,7 +119,7 @@ namespace P07_FamilyTree
 
             if (IsBirthday(child))
             {
-                if (!familyTree.Any(p => p.Birthday == child))
+                if (familyTree.All(p => p.Birthday != child))
                 {
                     childPerson.Birthday = child;
                 }
@@ -126,7 +130,7 @@ namespace P07_FamilyTree
             }
             else
             {
-                if (!familyTree.Any(p => p.Name == child))
+                if (familyTree.All(p => p.Name != child))
                 {
                     childPerson.Name = child;
                 }
@@ -141,9 +145,8 @@ namespace P07_FamilyTree
             familyTree.Add(childPerson);
         }
 
-        static bool IsBirthday(string input)
+        private static bool IsBirthday(string input)
         {
-            return Char.IsDigit(input[0]);
+            return char.IsDigit(input[0]);
         }
     }
-}
