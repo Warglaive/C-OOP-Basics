@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 public class Program
 {
@@ -7,38 +8,62 @@ public class Program
         var input = Console.ReadLine();
         while (input != "END")
         {
-            try
+            var inputArgs = input.Split(new[] { ' ' }
+                , StringSplitOptions.RemoveEmptyEntries);
+            if (inputArgs[0] == "Dough")
             {
-                string flourType;
-                string bakingTechnique;
-                decimal weight;
-                var name = ReadInput(input, out flourType, out bakingTechnique, out weight);
-                CalculatePrintTotalCalories(name, flourType, bakingTechnique, weight);
-                input = Console.ReadLine();
+                GetDought(inputArgs);
             }
-            catch (Exception e)
+            else
             {
-                Console.WriteLine(e.Message);
-                Environment.Exit(0);
+                GetTopping(inputArgs);
             }
+            input = Console.ReadLine();
         }
     }
 
-    private static void CalculatePrintTotalCalories(string name, string flourType, string bakingTechnique, decimal weight)
+    private static void GetTopping(string[] inputArgs)
     {
-        var totalCalories = new Dough(name, flourType, bakingTechnique, weight);
-        Console.WriteLine($"{totalCalories.CalculateTotalCalories(flourType, bakingTechnique, weight):f2}");
+        try
+        {
+            var toppingType = inputArgs[1];
+            var topingWeight = decimal.Parse(inputArgs[2]);
+            var currentTopping = new Topping(toppingType, topingWeight);
+            var totalToppingCalories = currentTopping.CalculateToppingCalories(topingWeight, toppingType);
+            Console.WriteLine($"{totalToppingCalories:f2}");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Environment.Exit(0);
+        }
     }
 
-    private static string ReadInput(string input, out string flourType, out string bakingTechnique, out decimal weight)
+    private static void GetDought(string[] inputArgs)
     {
-        var inputArgs = input.Split(new[] { ' ' }
-            , StringSplitOptions.RemoveEmptyEntries);
-        var name = inputArgs[0];
-        flourType = inputArgs[1];
-        bakingTechnique = inputArgs[2];
-        weight = decimal.Parse(inputArgs[3]);
-        return name;
+        try
+        {
+            string flourType;
+            string bakingTechnique;
+            decimal weight;
+            //
+            flourType = inputArgs[1];
+            bakingTechnique = inputArgs[2];
+            weight = decimal.Parse(inputArgs[3]);
+            //
+            CalculatePrintTotalCalories(flourType, bakingTechnique, weight);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+            Environment.Exit(0);
+        }
+    }
+
+    private static void CalculatePrintTotalCalories(string flourType, string bakingTechnique, decimal weight)
+    {
+        var totalCalories = new Dough(flourType, bakingTechnique, weight);
+        Console.WriteLine($"{totalCalories.CalculateTotalCalories(flourType, bakingTechnique, weight):f2}");
     }
 }
 

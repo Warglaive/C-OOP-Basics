@@ -5,22 +5,20 @@ using System.Text;
 
 public class Dough
 {
-    private string name;
     private string flourType;
     private string bakingTechnique;
     private decimal weight;
 
-    public Dough(string name, string flourType
+    public Dough(string flourType
         , string bakingTechnique, decimal weight)
     {
-        this.Name = name;
         this.FlourType = flourType;
         this.BakingTechnique = bakingTechnique;
         this.Weight = weight;
         CalculateTotalCalories(flourType, bakingTechnique, weight);
     }
 
-    public decimal Weight
+    private decimal Weight
     {
         get { return weight; }
         set
@@ -33,14 +31,14 @@ public class Dough
         }
     }
 
-    public string BakingTechnique
+    private string BakingTechnique
     {
         get { return bakingTechnique; }
         set
         {
-            if (value != "Crispy"
-                && value != "Chewy"
-                && value != "Homemade")
+            if (value.ToLower() != "crispy"
+                && value.ToLower() != "chewy"
+                && value.ToLower() != "homemade")
             {
                 throw new ArgumentException("Invalid type of dough.");
             }
@@ -48,12 +46,12 @@ public class Dough
         }
     }
 
-    public string FlourType
+    private string FlourType
     {
         get { return flourType; }
         set
         {
-            if (value != "White" && value != "Wholegrain")
+            if (value.ToLower() != "white" && value.ToLower() != "wholegrain")
             {
                 throw new ArgumentException("Invalid type of dough.");
             }
@@ -61,34 +59,28 @@ public class Dough
         }
     }
 
-    public string Name
-    {
-        get { return name; }
-        set { name = value; }
-    }
-
     public decimal CalculateTotalCalories(string flourType, string bakingTechnique, decimal weight)
     {
 
         weight *= 2;
-        switch (flourType)
+        switch (flourType.ToLower())
         {
-            case "White":
+            case "white":
                 weight *= 1.5m;
                 break;
-            case "Wholegrain":
+            case "wholegrain":
                 weight *= 1.0m;
                 break;
         }
-        switch (bakingTechnique)
+        switch (bakingTechnique.ToLower())
         {
-            case "Crispy":
+            case "crispy":
                 weight *= 0.9m;
                 break;
-            case "Chewy":
+            case "chewy":
                 weight *= 1.1m;
                 break;
-            case "Homemade":
+            case "homemade":
                 weight *= 1.0m;
                 break;
         }
