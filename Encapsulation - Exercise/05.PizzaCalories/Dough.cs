@@ -1,90 +1,81 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 
 public class Dough
 {
+    private const decimal MinWeight = 1;
+    private const decimal MaxWeight = 200;
+    private const decimal DefaultMultiplier = 2;
+
+    private Dictionary<string, decimal> validFlourTypes = new Dictionary<string, decimal>
+    {
+        ["white"] = 1.5m,
+        ["wholegrain"] = 1.0m,
+    };
+
+    private Dictionary<string, decimal> validBakingTechniques = new Dictionary<string, decimal>
+    {
+        ["crispy"] = 0.9m,
+        ["chewy"] = 1.1m,
+        ["homemade"] = 1.0m,
+    };
+
+    private decimal weight;
     private string flourType;
     private string bakingTechnique;
-    private decimal weight;
 
-    public Dough(string flourType
-        , string bakingTechnique, decimal weight)
+    public Dough(string flourType, string bakingTechnique, decimal weight)
     {
         this.FlourType = flourType;
         this.BakingTechnique = bakingTechnique;
         this.Weight = weight;
-        CalculateTotalCalories(flourType, bakingTechnique, weight);
     }
 
-    private decimal Weight
+    private decimal FlourMiltiplier => validFlourTypes[this.FlourType];
+    private decimal BakingTechniqueMultiplier => validBakingTechniques[this.BakingTechnique];
+
+    public decimal Calories => DefaultMultiplier * this.Weight * FlourMiltiplier * BakingTechniqueMultiplier;
+
+
+
+    public decimal Weight
     {
         get { return weight; }
         set
         {
-            if (value < 1 || value > 200)
+            if (value < MinWeight || value > MaxWeight)
             {
-                throw new ArgumentException("Dough weight should be in the range [1..200].");
+                throw new ArgumentException($"Dough weight should be in the range [{MinWeight}..{MaxWeight}].");
             }
             weight = value;
         }
     }
-
-    private string BakingTechnique
+    public string FlourType
+    {
+        get { return flourType; }
+        //validate
+        set
+        {
+            ValidateTypes(value.ToLower(), validFlourTypes);
+            flourType = value.ToLower();
+        }
+    }
+    public string BakingTechnique
     {
         get { return bakingTechnique; }
         set
         {
-            if (value.ToLower() != "crispy"
-                && value.ToLower() != "chewy"
-                && value.ToLower() != "homemade")
-            {
-                throw new ArgumentException("Invalid type of dough.");
-            }
-            bakingTechnique = value;
+            ValidateTypes(value.ToLower(), validBakingTechniques);
+            bakingTechnique = value.ToLower();
         }
     }
-
-    private string FlourType
+    private static void ValidateTypes(string type, Dictionary<string, decimal> dictionary) //possible bug
     {
-        get { return flourType; }
-        set
+        if (!dictionary.Any(f => f.Key == type))
         {
-            if (value.ToLower() != "white" && value.ToLower() != "wholegrain")
-            {
-                throw new ArgumentException("Invalid type of dough.");
-            }
-            flourType = value;
+            throw new ArgumentException("Invalid type of dough.");
         }
-    }
-
-    public decimal CalculateTotalCalories(string flourType, string bakingTechnique, decimal weight)
-    {
-
-        weight *= 2;
-        switch (flourType.ToLower())
-        {
-            case "white":
-                weight *= 1.5m;
-                break;
-            case "wholegrain":
-                weight *= 1.0m;
-                break;
-        }
-        switch (bakingTechnique.ToLower())
-        {
-            case "crispy":
-                weight *= 0.9m;
-                break;
-            case "chewy":
-                weight *= 1.1m;
-                break;
-            case "homemade":
-                weight *= 1.0m;
-                break;
-        }
-        return weight;
     }
 }
-

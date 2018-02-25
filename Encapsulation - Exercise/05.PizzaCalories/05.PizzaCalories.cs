@@ -5,65 +5,25 @@ public class Program
 {
     public static void Main()
     {
-        var input = Console.ReadLine();
-        while (input != "END")
-        {
-            var inputArgs = input.Split(new[] { ' ' }
-                , StringSplitOptions.RemoveEmptyEntries);
-            if (inputArgs[0] == "Dough")
-            {
-                GetDought(inputArgs);
-            }
-            else
-            {
-                GetTopping(inputArgs);
-            }
-            input = Console.ReadLine();
-        }
-    }
+        var pizzaName = Console.ReadLine().Split()[1];
+        var pizza = new Pizza(pizzaName);
+        var doughtInput = Console.ReadLine().Split();
+        var flourType = doughtInput[1];
+        var bakingTechnique = doughtInput[2];
+        var doughtWeight = decimal.Parse(doughtInput[3]);
 
-    private static void GetTopping(string[] inputArgs)
-    {
-        try
-        {
-            var toppingType = inputArgs[1];
-            var topingWeight = decimal.Parse(inputArgs[2]);
-            var currentTopping = new Topping(toppingType, topingWeight);
-            var totalToppingCalories = currentTopping.CalculateToppingCalories(topingWeight, toppingType);
-            Console.WriteLine($"{totalToppingCalories:f2}");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            Environment.Exit(0);
-        }
-    }
+        var dought = new Dough(flourType, bakingTechnique, doughtWeight);
+        pizza.SetDought(dought);
 
-    private static void GetDought(string[] inputArgs)
-    {
-        try
+        string command;
+        while ((command = Console.ReadLine()) != "END")
         {
-            string flourType;
-            string bakingTechnique;
-            decimal weight;
-            //
-            flourType = inputArgs[1];
-            bakingTechnique = inputArgs[2];
-            weight = decimal.Parse(inputArgs[3]);
-            //
-            CalculatePrintTotalCalories(flourType, bakingTechnique, weight);
+            var toppingInput = command.Split();
+            var toppingType = toppingInput[1];
+            var toppingWeight = decimal.Parse(toppingInput[2]);
+            var topping = new Topping(toppingType, toppingWeight);
+            pizza.addTopping(topping);
         }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            Environment.Exit(0);
-        }
-    }
-
-    private static void CalculatePrintTotalCalories(string flourType, string bakingTechnique, decimal weight)
-    {
-        var totalCalories = new Dough(flourType, bakingTechnique, weight);
-        Console.WriteLine($"{totalCalories.CalculateTotalCalories(flourType, bakingTechnique, weight):f2}");
+        Console.WriteLine(pizza.ToString());
     }
 }
-

@@ -1,72 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 
 public class Topping
 {
-    public Topping(string currentTopping, decimal weight)
+
+    private const decimal MinWeight = 1;
+    private const decimal MaxWeight = 50;
+    private const decimal DefaultMultiplier = 2;
+
+    private Dictionary<string, decimal> validToppingTypes = new Dictionary<string, decimal>
     {
-        this.CurrentTopping = currentTopping;
-        this.Weight = weight;
-        CalculateToppingCalories(weight, CurrentTopping);
-    }
-    private string currentTopping;
+        ["meat"] = 1.2m,
+        ["veggies"] = 0.8m,
+        ["cheese"] = 1.1m,
+        ["sauce"] = 0.9m,
+    };
+    private string type;
     private decimal weight;
+
+    public Topping(string type, decimal weight)
+    {
+        this.Type = type;
+        ValidateWeight(type, weight);
+        this.Weight = weight;
+    }
+
+    private decimal TypeMultiplier => validToppingTypes[type];
+
+    public decimal calories => DefaultMultiplier * this.Weight * TypeMultiplier;
+
+
+    private void ValidateWeight(string type, decimal weight)
+    {
+        if (weight < MinWeight || weight > MaxWeight)
+        {
+            throw new ArgumentException($"{type} weight should be in the range [{MinWeight}..{MaxWeight}].");
+        }
+    }
 
     public decimal Weight
     {
-        get
-        {
-            return weight;
-        }
+        get { return weight; }
         set
-        {
-            if (value < 1 || value > 50)
-            {
-                throw new ArgumentException($"{currentTopping} weight should be in the range [1..50].");
-            }
-            weight = value;
-        }
+        { weight = value; }
     }
 
-    private string CurrentTopping
+    public string Type
     {
-        get
-        {
-            return currentTopping;
-        }
+        get { return type; }
         set
         {
-            if (value.ToLower() != "meat"
-                && value.ToLower() != "veggies"
-                && value.ToLower() != "cheese"
-                && value.ToLower() != "sauce")
+            if (!this.validToppingTypes.Any(t => t.Key == value.ToLower()))
             {
                 throw new ArgumentException($"Cannot place {value} on top of your pizza.");
             }
-            currentTopping = value;
+            type = value.ToLower();
         }
     }
 
-    public decimal CalculateToppingCalories(decimal weight, string toppingModifier)
-    {
-        weight *= 2;
-        switch (toppingModifier)
-        {
-            case "meat":
-                weight *= 1.2m;
-                break;
-            case "veggies":
-                weight *= 0.8m;
-                break;
-            case "cheese":
-                weight *= 1.1m;
-                break;
-            case "sauce":
-                weight *= 0.9m;
-                break;
-        }
-        return weight;
-    }
 }
