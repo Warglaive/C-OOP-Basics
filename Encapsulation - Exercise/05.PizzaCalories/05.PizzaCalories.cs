@@ -5,6 +5,18 @@ public class Program
 {
     public static void Main()
     {
+        try
+        {
+            MakePizza();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    private static void MakePizza()
+    {
         var pizzaName = Console.ReadLine().Split()[1];
         var pizza = new Pizza(pizzaName);
         var doughtInput = Console.ReadLine().Split();
