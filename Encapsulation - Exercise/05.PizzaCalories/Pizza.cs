@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 
 public class Pizza
@@ -20,7 +19,7 @@ public class Pizza
     public Pizza(string name)
         : this()
     {
-        this.Name = name;
+        Name = name;
     }
 
     private decimal ToppingsCalories
