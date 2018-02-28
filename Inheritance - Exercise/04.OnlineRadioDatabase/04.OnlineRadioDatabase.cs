@@ -22,16 +22,22 @@ public class Program
         }
         //
         Console.WriteLine($"Songs added: {playList.Count}");
-        double totalSeconds = 0;
+        int totalDuration = 0;
         foreach (var currentSong in playList)
         {
             var currentMinutesToSeconds = currentSong.Minutes * 60;
-            totalSeconds += currentMinutesToSeconds + currentSong.Seconds;
+            totalDuration += currentMinutesToSeconds + currentSong.Seconds;
         }
-        var playlistLength = TimeSpan.FromSeconds(totalSeconds);
-        Console.WriteLine($"Playlist length: {playlistLength.Hours}h " +
-                          $"{playlistLength.Minutes}m " +
-                          $"{playlistLength.Seconds}s");
+
+        int hours = totalDuration / 3600;
+        totalDuration -= hours * 3600;
+        int minutes = totalDuration / 60;
+        totalDuration -= minutes * 60;
+        int seconds = totalDuration;
+
+        Console.WriteLine($"Playlist length: {hours}h " +
+                          $"{minutes}m " +
+                          $"{seconds}s");
         //
     }
 
