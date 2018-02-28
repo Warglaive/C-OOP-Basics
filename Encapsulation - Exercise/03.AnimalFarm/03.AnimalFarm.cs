@@ -1,7 +1,7 @@
 ﻿namespace AnimalFarm
 {
     using System;
-    using AnimalFarm;
+
     class Program
     {
         static void Main(string[] args)

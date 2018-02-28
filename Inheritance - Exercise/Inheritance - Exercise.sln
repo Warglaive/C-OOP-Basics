@@ -5,11 +5,13 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "01.Person", "01.Person\01.Person.csproj", "{7CC4894D-9549-41EB-BEFF-21B12DC7429E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02.BookShop", "02.BookShop\02.BookShop.csproj", "{5164118B-1222-4CF9-B6E6-C7B7ABFD2750}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "02.BookShop", "02.BookShop\02.BookShop.csproj", "{5164118B-1222-4CF9-B6E6-C7B7ABFD2750}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03.Mankind", "03.Mankind\03.Mankind.csproj", "{2C0A8D7A-E614-4541-9B5C-8855751BD98D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "03.Mankind", "03.Mankind\03.Mankind.csproj", "{2C0A8D7A-E614-4541-9B5C-8855751BD98D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04.OnlineRadioDatabase", "04.OnlineRadioDatabase\04.OnlineRadioDatabase.csproj", "{96A31FB0-1DB9-408A-8803-E0DCC200121E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "04.OnlineRadioDatabase", "04.OnlineRadioDatabase\04.OnlineRadioDatabase.csproj", "{96A31FB0-1DB9-408A-8803-E0DCC200121E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05.Mordor'sCruelPlan", "ConsoleApp1\05.Mordor'sCruelPlan.csproj", "{F461D956-E192-49F4-ABC4-9D3AFBA8E063}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{96A31FB0-1DB9-408A-8803-E0DCC200121E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96A31FB0-1DB9-408A-8803-E0DCC200121E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96A31FB0-1DB9-408A-8803-E0DCC200121E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F461D956-E192-49F4-ABC4-9D3AFBA8E063}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F461D956-E192-49F4-ABC4-9D3AFBA8E063}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F461D956-E192-49F4-ABC4-9D3AFBA8E063}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F461D956-E192-49F4-ABC4-9D3AFBA8E063}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
