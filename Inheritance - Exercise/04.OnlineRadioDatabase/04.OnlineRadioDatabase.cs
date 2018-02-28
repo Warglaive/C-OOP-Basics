@@ -14,16 +14,25 @@ public class Program
             try
             {
                 ReadPlaylistLines(playList);
-                Console.WriteLine($"Songs added: {playList.Count}");
-                //
-
-                //
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
             }
         }
+        //
+        Console.WriteLine($"Songs added: {playList.Count}");
+        double totalSeconds = 0;
+        foreach (var currentSong in playList)
+        {
+            var currentMinutesToSeconds = currentSong.Minutes * 60;
+            totalSeconds += currentMinutesToSeconds + currentSong.Seconds;
+        }
+        var playlistLength = TimeSpan.FromSeconds(totalSeconds);
+        Console.WriteLine($"Playlist length: {playlistLength.Hours}h " +
+                          $"{playlistLength.Minutes}m " +
+                          $"{playlistLength.Seconds}s");
+        //
     }
 
     private static void ReadPlaylistLines(List<Song> playList)

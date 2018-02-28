@@ -18,25 +18,25 @@ public class Song
         this.Minutes = minutes;
         this.Seconds = seconds;
     }
-    private string ArtistName
+    public string ArtistName
     {
         get { return artistName; }
         set { artistName = value; }
     }
 
-    private string SongName
+    public string SongName
     {
         get { return songName; }
         set { songName = value; }
     }
 
-    private int Minutes
+    public int Minutes
     {
         get { return minutes; }
         set { minutes = value; }
     }
 
-    private int Seconds
+    public int Seconds
     {
         get { return seconds; }
         set { seconds = value; }
