@@ -11,12 +11,18 @@ public class Validator
         {
             if (!string.IsNullOrEmpty(songName))
             {
-                if (artistName.Length > 3 && artistName.Length < 20)
+                if (artistName.Length >= 3 && artistName.Length <= 20)
                 {
-                    if (songName.Length > 3 && songName.Length < 30)
+                    if (songName.Length >= 3 && songName.Length <= 30)
                     {
-                        if (minutes >= 0 && seconds >= 0
-                            || (minutes <= 14 && seconds <= 59))
+                        //check total length
+                        var currentSongTotalLength = minutes * 60 + seconds;
+                        var length = TimeSpan.FromSeconds(currentSongTotalLength);
+
+                        if (length.Seconds >= 0
+                            && length.Seconds <= 59
+                            || length.Minutes >= 0
+                            && length.Minutes <= 14)
                         {
                             if (minutes >= 0 && minutes <= 14)
                             {
