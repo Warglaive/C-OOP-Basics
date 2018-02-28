@@ -1,32 +1,30 @@
 ﻿using System;
 
 
-public class Validator : Song
+public class Validator
 {
     public Validator(string artistName, string songName, int minutes
-        , int seconds) : base(artistName, songName, minutes, seconds)
+        , int seconds)
     {
         if (!string.IsNullOrEmpty(artistName))
         {
             if (!string.IsNullOrEmpty(songName))
             {
-                if (artistName.Length > 3 || artistName.Length < 20)
+                if (artistName.Length > 3 && artistName.Length < 20)
                 {
-                    if (songName.Length > 3 || songName.Length < 30)
+                    if (songName.Length > 3 && songName.Length < 30)
                     {
-                        //Song length should be between 0 second and 14 minutes and 59 seconds.
-                        var minToSecs = minutes * 60;
-                        var totalLengthInt = minToSecs + seconds;
-                        TimeSpan totalLength = TimeSpan.FromMinutes(totalLengthInt);
-
-                        if (totalLength.Minutes >= 0 && totalLength.Seconds >= 0
-                            || (totalLength.Minutes <= 14 && totalLength.Seconds <= 59))
+                        if (minutes >= 0 && seconds >= 0
+                            || (minutes <= 14 && seconds <= 59))
                         {
-                            if (totalLength.Minutes >= 0 || totalLength.Minutes <= 14)
+                            if (minutes >= 0 && minutes <= 14)
                             {
-                                if (totalLength.Seconds >= 0 || totalLength.Seconds <= 59)
+                                if (seconds >= 0 && seconds <= 59)
                                 {
-
+                                    var minToSecs = minutes * 60;
+                                    var totalLengthInt = minToSecs + seconds;
+                                    TimeSpan totalLength = TimeSpan.FromSeconds(totalLengthInt);
+                                    var song = new Song(artistName, songName, totalLength);
                                 }
                                 else
                                 {
