@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 
@@ -6,12 +7,17 @@ public class Program
 {
     public static void Main()
     {
+        var playList = new List<Song>();
         var n = int.Parse(Console.ReadLine());
         for (int i = 0; i < n; i++)
         {
             try
             {
-                ReadPlaylistLines();
+                ReadPlaylistLines(playList);
+                Console.WriteLine($"Songs added: {playList.Count}");
+                //
+
+                //
             }
             catch (Exception e)
             {
@@ -20,7 +26,7 @@ public class Program
         }
     }
 
-    private static void ReadPlaylistLines()
+    private static void ReadPlaylistLines(List<Song> playList)
     {
         var songParts = Console.ReadLine()
             .Trim()
@@ -38,7 +44,7 @@ public class Program
 
         var validator = new Validator(artistName, songName, minutes, seconds);
 
-        var song = new Song(artistName, songName, totalLength);
-
+        var song = new Song(artistName, songName, minutes, seconds);
+        playList.Add(song);
     }
 }

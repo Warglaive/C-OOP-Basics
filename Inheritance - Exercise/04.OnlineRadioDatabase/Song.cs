@@ -9,36 +9,15 @@ public class Song
     private string songName;
     private int minutes;
     private int seconds;
-    private Dictionary<string, Dictionary<string, TimeSpan>> result;
-
 
     public Song(string artistName, string songName
-        , TimeSpan totalLength)
+        , int minutes, int seconds)
     {
         this.ArtistName = artistName;
         this.SongName = songName;
         this.Minutes = minutes;
         this.Seconds = seconds;
-        //SAVE SONGS
-        result = new Dictionary<string, Dictionary<string, TimeSpan>>();
-        this.Result = result;
-        if (!result.ContainsKey(this.ArtistName))//test
-        {
-            result.Add(ArtistName, new Dictionary<string, TimeSpan>());
-        }
-        if (!result[ArtistName].ContainsKey(SongName))
-        {
-            result[ArtistName].Add(SongName, new TimeSpan());
-        }
-        result[ArtistName][SongName] = totalLength;
     }
-
-    public Dictionary<string, Dictionary<string, TimeSpan>> Result
-    {
-        get { return result; }
-        set { result = value; }
-    }
-
     private string ArtistName
     {
         get { return artistName; }
@@ -61,11 +40,5 @@ public class Song
     {
         get { return seconds; }
         set { seconds = value; }
-    }
-    public override string ToString()
-    {
-        var stringBuilder = new StringBuilder();
-        stringBuilder.AppendLine();
-        return "a";
     }
 }
