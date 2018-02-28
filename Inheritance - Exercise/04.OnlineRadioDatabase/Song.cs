@@ -20,7 +20,6 @@ public class Song
         this.Minutes = minutes;
         this.Seconds = seconds;
         //SAVE SONGS
-
         result = new Dictionary<string, Dictionary<string, TimeSpan>>();
         this.Result = result;
         if (!result.ContainsKey(this.ArtistName))//test
@@ -31,8 +30,7 @@ public class Song
         {
             result[ArtistName].Add(SongName, new TimeSpan());
         }
-        result[ArtistName][SongName]=totalLength;
-        Console.WriteLine("Song added.");
+        result[ArtistName][SongName] = totalLength;
     }
 
     public Dictionary<string, Dictionary<string, TimeSpan>> Result
@@ -63,5 +61,11 @@ public class Song
     {
         get { return seconds; }
         set { seconds = value; }
+    }
+    public override string ToString()
+    {
+        var stringBuilder = new StringBuilder();
+        stringBuilder.AppendLine();
+        return "a";
     }
 }

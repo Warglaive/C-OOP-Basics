@@ -26,12 +26,19 @@ public class Program
             .Trim()
             .Split(';')
             .ToList();
-
         var artistName = songParts[0];
         var songName = songParts[1];
         var timeParts = songParts[2].Split(':');
         var minutes = int.Parse(timeParts[0]);
         var seconds = int.Parse(timeParts[1]);
+        var minToSecs = minutes * 60;
+
+        var totalLengthInt = minToSecs + seconds;
+        var totalLength = TimeSpan.FromSeconds(totalLengthInt);
+
         var validator = new Validator(artistName, songName, minutes, seconds);
+
+        var song = new Song(artistName, songName, totalLength);
+
     }
 }

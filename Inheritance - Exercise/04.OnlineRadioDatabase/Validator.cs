@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 
 public class Validator
@@ -21,10 +22,7 @@ public class Validator
                             {
                                 if (seconds >= 0 && seconds <= 59)
                                 {
-                                    var minToSecs = minutes * 60;
-                                    var totalLengthInt = minToSecs + seconds;
-                                    TimeSpan totalLength = TimeSpan.FromSeconds(totalLengthInt);
-                                    var song = new Song(artistName, songName, totalLength);
+                                    Console.WriteLine("Song added.");
                                 }
                                 else
                                 {
