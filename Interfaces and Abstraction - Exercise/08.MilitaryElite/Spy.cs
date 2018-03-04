@@ -22,7 +22,7 @@ public class Spy : ISoldier, ISpy
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"Spy: ")
+        sb.AppendLine($"Spy:")
             .AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id}")
             .AppendLine($"Code Number: {this.CodeNumber}");
         return sb.ToString();

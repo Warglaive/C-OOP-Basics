@@ -21,7 +21,7 @@ public class Private : ISoldier, IPrivate
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary}");
+        sb.Append($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary}");
         return sb.ToString();
     }
 }

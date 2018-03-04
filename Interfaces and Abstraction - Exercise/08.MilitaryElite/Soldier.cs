@@ -9,4 +9,3 @@ public abstract class Soldier : ISoldier
     public string FirstName { get; }
     public string LastName { get; }
 }
-

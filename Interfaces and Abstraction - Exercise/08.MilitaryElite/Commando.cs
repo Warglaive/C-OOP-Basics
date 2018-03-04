@@ -37,11 +37,11 @@ public class Commando : ISoldier, IPrivate, ISpecialisedSoldier, ICommando
         var sb = new StringBuilder();
         sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary:f2}")
             .AppendLine($"Corps: {this.Corps}")
-            .AppendLine("Missions: ");
+            .AppendLine("Missions:");
 
         foreach (var currentMission in SetOfMissions)
         {
-            sb.AppendLine(currentMission.ToString());
+            sb.Append(currentMission.ToString());
         }
         return sb.ToString();
     }

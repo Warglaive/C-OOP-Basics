@@ -48,7 +48,7 @@ public class Missions
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.Append($"    Code Name: {this.CodeName} State: {this.State}");
+        sb.Append($"  Code Name: {this.CodeName} State: {this.State}");
         return sb.ToString();
     }
 }

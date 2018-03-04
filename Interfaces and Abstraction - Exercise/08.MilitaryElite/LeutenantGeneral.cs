@@ -24,9 +24,9 @@ public class LeutenantGeneral : ISoldier, IPrivate, ILeutenantGeneral
         var sb = new StringBuilder();
         sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id:" +
                       $" {this.Id} Salary: {this.Salary:f2}")
-                      .AppendLine($"Privates: ");
+                      .AppendLine($"Privates:");
         foreach (var currentPrivate in SetOfPrivates)
-        {//
+        {
             sb.AppendLine($"  Name: {currentPrivate.FirstName} {currentPrivate.LastName} Id: {currentPrivate.Id} Salary: {currentPrivate.Salary:f2}");
         }
 
