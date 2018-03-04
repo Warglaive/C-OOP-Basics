@@ -8,6 +8,12 @@ public class Missions
     private string codeName;
     private string state;
 
+    public Missions(string codeName, string state)
+    {
+        this.State = state;
+        this.CodeName = codeName;
+    }
+
     public string State
     {
         get { return state; }
@@ -17,7 +23,6 @@ public class Missions
             {
                 state = value;
             }
-            //only mission skip
         }
     }
 
@@ -25,12 +30,25 @@ public class Missions
     public string CodeName
     {
         get { return codeName; }
-        set { codeName = value; }
+        set
+        {
+            if (this.State == "inProgress" || this.State == "Finished")
+            {
+                codeName = value;
+            }
+        }
     }
 
     public string CompleteMission(string command)
     {
         //
+        this.State = "Finished";
         return command;
+    }
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        sb.Append($"    Code Name: {this.CodeName} State: {this.State}");
+        return sb.ToString();
     }
 }
