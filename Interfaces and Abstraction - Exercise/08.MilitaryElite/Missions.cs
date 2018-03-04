@@ -11,7 +11,14 @@ public class Missions
     public string State
     {
         get { return state; }
-        set { state = value; }
+        set
+        {
+            if (value == "inProgress" || value == "Finished")
+            {
+                state = value;
+            }
+            //only mission skip
+        }
     }
 
 
