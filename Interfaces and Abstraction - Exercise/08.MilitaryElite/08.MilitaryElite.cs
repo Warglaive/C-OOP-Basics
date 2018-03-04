@@ -21,24 +21,24 @@ public class Program
                 case "Private":
                     var currentPrivate = ReadPrivate(inputArgs);
                     setOfPrivates.Add(currentPrivate);
-                    Console.WriteLine(currentPrivate);
+                    Console.Write(currentPrivate);
                     break;
                 case "LeutenantGeneral":
                     var currentLeutenantGeneral = ReadLeutenantGeneral(inputArgs, setOfPrivates);
-                    Console.WriteLine(currentLeutenantGeneral);
+                    Console.Write(currentLeutenantGeneral);
                     break;
                 case "Engineer":
                     var currentEngineer = ReadEngineer(inputArgs);
-                    Console.WriteLine(currentEngineer);
+                    Console.Write(currentEngineer);
                     break;
                 case "Commando":
                     var currentCommando = ReadCommando(inputArgs);
-                   // currentCommando.CompleteMission();
-                    Console.WriteLine(currentCommando);
+                    // currentCommando.CompleteMission();
+                    Console.Write(currentCommando);
                     break;
                 case "Spy":
                     var currentSpy = ReadSpy(inputArgs);
-                    Console.WriteLine(currentSpy);
+                    Console.Write(currentSpy);
                     break;
             }
             input = Console.ReadLine();

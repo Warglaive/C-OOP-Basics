@@ -19,12 +19,11 @@ public class Commando : ISoldier, IPrivate, ISpecialisedSoldier, ICommando
     public List<Missions> SetOfMissions { get; }
     public string Corps { get; }
 
-    public void CompleteMission()
+    public void CompleteMission(string mission)
     {
-        //not usable
-        foreach (var curreMission in SetOfMissions)
+        foreach (var currentMission in SetOfMissions.Where(m=>m.CodeName==mission))
         {
-            curreMission.State = "Finished";
+            currentMission.State = "Finished";
         }
     }
 
@@ -41,7 +40,7 @@ public class Commando : ISoldier, IPrivate, ISpecialisedSoldier, ICommando
 
         foreach (var currentMission in SetOfMissions)
         {
-            sb.Append(currentMission.ToString());
+            sb.AppendLine(currentMission.ToString());
         }
         return sb.ToString();
     }

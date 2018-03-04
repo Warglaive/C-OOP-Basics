@@ -24,7 +24,7 @@ public class Spy : ISoldier, ISpy
         var sb = new StringBuilder();
         sb.AppendLine($"Spy:")
             .AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id}")
-            .AppendLine($"Code Number: {this.CodeNumber}");
+            .Append($"Code Number: {this.CodeNumber}");
         return sb.ToString();
     }
 }

@@ -25,7 +25,7 @@ public class Engineer : ISoldier, IPrivate, ISpecialisedSoldier, IEngineer
     {
         var sb = new StringBuilder();
         sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary:f2}")
-        .AppendLine($"Corps: {this.Corps}")
+         .AppendLine($"Corps: {this.Corps}")
         .AppendLine("Repairs:");
 
         foreach (var currentRepair in SetOfRepairs)
