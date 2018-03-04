@@ -29,15 +29,41 @@ public class Program
                     break;
                 case "Engineer":
                     var currentEngineer = ReadEngineer(inputArgs);
+                    Console.WriteLine(currentEngineer);
                     break;
             }
             input = Console.ReadLine();
         }
     }
 
-    private static object ReadEngineer(string[] inputArgs)
+    private static Engineer ReadEngineer(string[] inputArgs)
     {
-        var 
+        var engineerId = inputArgs[1];
+        var engineerFirstName = inputArgs[2];
+        var engineerLastName = inputArgs[3];
+        var engineerSalary = double.Parse(inputArgs[4]);
+        var engineerCorps = inputArgs[5];
+
+        var repairsList = new List<Repair>();
+
+        var repairPart = string.Empty;
+        var repairHours = -1;
+        for (int i = 6; i < inputArgs.Length - 1; i += 2)
+        {
+            repairPart = inputArgs[i];
+
+            repairHours = int.Parse(inputArgs[i + 1]);
+
+            if (repairPart != string.Empty && repairHours > -1)
+            {
+                var repair = new Repair(repairPart, repairHours);
+                repairsList.Add(repair);
+            }
+        }
+
+        var currentEngineer = new Engineer(repairsList, engineerCorps, engineerId,
+            engineerFirstName, engineerLastName, engineerSalary);
+        return currentEngineer;
     }
 
     private static LeutenantGeneral ReadLeutenantGeneral(string[] inputArgs, List<Private> setOfPrivates)
