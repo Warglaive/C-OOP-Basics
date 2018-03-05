@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public interface IPrivate
+﻿public interface IPrivate : ISoldier
 {
-    double Salary { get; }
+    decimal Salary { get; }
 }

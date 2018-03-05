@@ -1,157 +1,93 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 public class Program
 {
     public static void Main()
     {
-        var input = Console.ReadLine();
-        var setOfPrivates = new List<Private>();
-        while (input != "End")
+        var soldiers = new List<ISoldier>();
+        string input;
+        while ((input = Console.ReadLine()) != "End")
         {
-            var inputArgs = input.Split(new[] { ' ' }
-            , StringSplitOptions.RemoveEmptyEntries);
+            string[] tokens = input.Split();
+            var soldierType = tokens[0];
+            var id = int.Parse(tokens[1]);
+            var firstName = tokens[2];
+            var lastName = tokens[3];
+            var salary = decimal.Parse(tokens[4]);
 
-            var soldierType = inputArgs[0];
+            ISoldier soldier = null;
 
-            switch (soldierType)
+            try
             {
-                case "Private":
-                    var currentPrivate = ReadPrivate(inputArgs);
-                    setOfPrivates.Add(currentPrivate);
-                    Console.Write(currentPrivate);
-                    break;
-                case "LeutenantGeneral":
-                    var currentLeutenantGeneral = ReadLeutenantGeneral(inputArgs, setOfPrivates);
-                    Console.Write(currentLeutenantGeneral);
-                    break;
-                case "Engineer":
-                    var currentEngineer = ReadEngineer(inputArgs);
-                    Console.Write(currentEngineer);
-                    break;
-                case "Commando":
-                    var currentCommando = ReadCommando(inputArgs);
-                    // currentCommando.CompleteMission();
-                    Console.Write(currentCommando);
-                    break;
-                case "Spy":
-                    var currentSpy = ReadSpy(inputArgs);
-                    Console.Write(currentSpy);
-                    break;
-            }
-            input = Console.ReadLine();
-        }
-    }
-
-    private static Spy ReadSpy(string[] inputArgs)
-    {
-        var id = inputArgs[1];
-        var firstName = inputArgs[2];
-        var lastName = inputArgs[3];
-        var codeNumber = int.Parse(inputArgs[4]);
-        var currentSpy = new Spy(codeNumber, firstName, lastName, id);
-        return currentSpy;
-    }
-
-    private static Commando ReadCommando(string[] inputArgs)
-    {
-        var id = inputArgs[1];
-        var firstName = inputArgs[2];
-        var lastName = inputArgs[3];
-        var salary = double.Parse(inputArgs[4]);
-        var corps = inputArgs[5];
-
-        var missionsList = new List<Missions>();
-        var codeName = string.Empty;
-        var state = string.Empty;
-        //
-        for (int i = 6; i < inputArgs.Length - 1; i += 2)
-        {
-            codeName = inputArgs[i];
-            state = inputArgs[i + 1];
-
-            if (codeName != string.Empty && state != string.Empty)
-            {
-                var mission = new Missions(codeName, state);
-                if (mission.State != null && mission.CodeName != null)
+                switch (soldierType)
                 {
-                    missionsList.Add(mission);
+                    case "Private":
+                        soldier = new Private(id, firstName, lastName, salary);
+                        break;
+                    case "LeutenantGeneral":
+                        var lieutenant = new LeutenantGeneral(id, firstName, lastName, salary);
+                        for (int i = 5; i < tokens.Length; i++)
+                        {
+                            var privateId = int.Parse(tokens[i]);
+                            ISoldier @private = soldiers.First(p => p.Id == privateId);
+                            lieutenant.AddPrivate(@private);
+                        }
+                        soldier = lieutenant;
+                        break;
+                    case "Engineer":
+                        string engineerCorps = tokens[5];
+                        var engineer = new Engineer(id, firstName, lastName, salary, engineerCorps);
+                        for (int i = 6; i < tokens.Length; i++)
+                        {
+                            var partName = tokens[i];
+                            var hoursWorked = int.Parse(tokens[++i]);
+                            try
+                            {
+                                IRepair repair = new Repair(partName, hoursWorked);
+                                engineer.AddRepair(repair);
+                            }
+                            catch { }
+                        }
+                        soldier = engineer;
+                        break;
+                    case "Commando":
+                        string commandoCorps = tokens[5];
+                        var commando = new Commando(id, firstName, lastName, salary, commandoCorps);
+                        //
+                        for (int i = 6; i < tokens.Length; i++)
+                        {
+                            var codeName = tokens[i];
+                            var missionState = tokens[++i];
+                            try
+                            {
+                                IMission mission = new Mission(codeName, missionState);
+                                commando.AddMission(mission);
+                            }
+                            catch { }
+                        }
+                        soldier = commando;
+                        //
+                        break;
+                    case "Spy":
+                        int codeNumber = (int)salary;
+                        soldier = new Spy(id, firstName, lastName, codeNumber);
+                        break;
+                    default:
+                        throw new ArgumentException("Invalid Soldier Type");
                 }
+                soldiers.Add(soldier);
             }
-        }
-        var currentCommando = new Commando(corps, missionsList, id, firstName, lastName, salary);
-        return currentCommando;
-        //
-    }
-
-    private static Engineer ReadEngineer(string[] inputArgs)
-    {
-        var engineerId = inputArgs[1];
-        var engineerFirstName = inputArgs[2];
-        var engineerLastName = inputArgs[3];
-        var engineerSalary = double.Parse(inputArgs[4]);
-        var engineerCorps = inputArgs[5];
-
-        var repairsList = new List<Repair>();
-
-        var repairPart = string.Empty;
-        var repairHours = -1;
-        for (int i = 6; i < inputArgs.Length - 1; i += 2)
-        {
-            repairPart = inputArgs[i];
-
-            repairHours = int.Parse(inputArgs[i + 1]);
-
-            if (repairPart != string.Empty && repairHours > -1)
+            catch (Exception e)
             {
-                var repair = new Repair(repairPart, repairHours);
-                repairsList.Add(repair);
+            //    Console.WriteLine(e.Message);
             }
         }
-
-        var currentEngineer = new Engineer(repairsList, engineerCorps, engineerId,
-            engineerFirstName, engineerLastName, engineerSalary);
-        return currentEngineer;
-    }
-
-    private static LeutenantGeneral ReadLeutenantGeneral(string[] inputArgs, List<Private> setOfPrivates)
-    {
-        var privatesIDs = new List<string>();
-
-        var id = inputArgs[1];
-        var firstName = inputArgs[2];
-        var lastName = inputArgs[3];
-        var salary = double.Parse(inputArgs[4]);
-
-        for (int i = 5; i <= inputArgs.Length - 1; i++)
+        foreach (var s in soldiers)
         {
-            privatesIDs.Add(inputArgs[i]);
+            Console.WriteLine(s);
         }
-        // bug maybe 
-        var privatesToAdd = new List<Private>();
-        var temp = new List<Private>();
-        foreach (var currentId in privatesIDs)
-        {
-            temp = setOfPrivates
-               .Where(p => p.Id == currentId)
-               .ToList();
-            privatesToAdd.Add(temp[0]);
-            temp.Clear();
-        }
-
-        var currentLeutenantGeneral = new LeutenantGeneral(privatesToAdd, id, firstName, lastName, salary);
-        return currentLeutenantGeneral;
-    }
-
-    private static Private ReadPrivate(string[] inputArgs)
-    {
-        var id = inputArgs[1];
-        var firstName = inputArgs[2];
-        var lastName = inputArgs[3];
-        var salary = double.Parse(inputArgs[4]);
-        var currentPrivate = new Private(id, firstName, lastName, salary);
-        return currentPrivate;
     }
 }

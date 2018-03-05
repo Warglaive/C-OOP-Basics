@@ -2,26 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-
-public class Private : ISoldier, IPrivate
+public class Private : Soldier, IPrivate
 {
-    public Private(string id
-        , string firstName, string lastName, double salary)
+    public Private(int id, string firstName, string lastName, decimal salary)
+        : base(id, firstName, lastName)
     {
-        Salary = salary;
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
+        this.Salary = salary;
     }
 
-    public double Salary { get; }
-    public string Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
+    public decimal Salary { get; }
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary}");
-        return sb.ToString();
+        return $"{base.ToString()} Salary: {this.Salary:f2}";
     }
 }

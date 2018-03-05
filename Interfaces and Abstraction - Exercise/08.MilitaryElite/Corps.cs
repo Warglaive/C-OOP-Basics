@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public interface ISpecialisedSoldier : IPrivate
+public enum Corps
 {
-    Corps Corps { get; }
+    Airforces, Marines
 }
 

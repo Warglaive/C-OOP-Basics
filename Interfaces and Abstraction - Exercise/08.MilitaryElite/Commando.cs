@@ -4,44 +4,43 @@ using System.Linq;
 using System.Text;
 
 
-public class Commando : ISoldier, IPrivate, ISpecialisedSoldier, ICommando
+public class Commando : SpecialisedSoldier, ICommando
 {
-    public Commando(string corps, List<Missions> setOfMissions, string id, string firstName, string lastName, double salary)
+    private ICollection<IMission> missions;
+    public Commando(int id, string firstName, string lastName, decimal salary, string corps)
+        : base(id, firstName, lastName, salary, corps)
     {
-        this.Corps = corps;
-        this.SetOfMissions = setOfMissions;
-        this.Id = id;
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Salary = salary;
+        missions = new List<IMission>();
     }
 
-    public List<Missions> SetOfMissions { get; }
-    public string Corps { get; }
-
-    public void CompleteMission(string mission)
+    public IReadOnlyCollection<IMission> Missions =>
+        (IReadOnlyCollection<IMission>)missions;
+    public void AddMission(IMission mission)
     {
-        foreach (var currentMission in SetOfMissions.Where(m=>m.CodeName==mission))
+        this.missions.Add(mission);
+    }
+
+    public void CompleteMission(string missionCodeName)
+    {
+        IMission mission = this.Missions.FirstOrDefault(m => m.CodeName == missionCodeName);
+        if (mission == null)
         {
-            currentMission.State = "Finished";
+            throw new ArgumentException("Mission not found");
         }
+        mission.Complete();
     }
-
-    public string Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
-    public double Salary { get; }
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary:f2}")
-            .AppendLine($"Corps: {this.Corps}")
-            .AppendLine("Missions:");
+        sb.AppendLine(base.ToString())
+            .AppendLine($"{nameof(this.Corps)}: {this.Corps.ToString()}")
+            .AppendLine($"{nameof(this.Missions)}:");
 
-        foreach (var currentMission in SetOfMissions)
+        foreach (var currentMission in this.Missions)
         {
-            sb.AppendLine(currentMission.ToString());
+            sb.AppendLine($"  {currentMission.ToString()}");
         }
-        return sb.ToString();
+        var result = sb.ToString().TrimEnd();
+        return result;
     }
 }

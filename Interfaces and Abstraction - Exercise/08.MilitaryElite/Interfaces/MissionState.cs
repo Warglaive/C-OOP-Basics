@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-
-public interface ISpecialisedSoldier : IPrivate
+public enum MissionState
 {
-    Corps Corps { get; }
+    inProgress,
+    Finished
 }
 

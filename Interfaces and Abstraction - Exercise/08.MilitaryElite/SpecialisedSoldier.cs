@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
-public class SpecialisedSoldier : ISpecialisedSoldier
-{
-    private string corps;
 
-    public SpecialisedSoldier(string corps)
+public abstract class SpecialisedSoldier : Private, ISpecialisedSoldier
+{
+    public SpecialisedSoldier(int id, string firstName, string lastName, decimal salary, string corps)
+        : base(id, firstName, lastName, salary)
     {
-        this.Corps = corps;
+        ParseCorps(corps);
     }
-    public string Corps
+
+    private void ParseCorps(string corps)
     {
-        get { return corps; }
-        set
+        bool validCorps = Enum.TryParse(typeof(Corps), corps, out object outCorps);
+        if (!validCorps)
         {
-            if (value == "Airforces" || value == "Marines")
-            {
-                corps = value;
-            }
-            //skip line
+            throw new ArgumentException("Invalid corps!");
         }
+        this.Corps = (Corps)outCorps;
     }
+
+    public Corps Corps { get; private set; }
 }

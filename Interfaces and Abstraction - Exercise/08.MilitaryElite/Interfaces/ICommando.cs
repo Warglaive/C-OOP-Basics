@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-
-public interface ICommando
+public interface ICommando : ISpecialisedSoldier
 {
-    List<Missions> SetOfMissions { get; }
+    IReadOnlyCollection<IMission> Missions { get; }
+    void AddMission(IMission mission);
+    void CompleteMission(string missionCodeName);
 }

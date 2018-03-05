@@ -3,35 +3,34 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Engineer : ISoldier, IPrivate, ISpecialisedSoldier, IEngineer
+public class Engineer : SpecialisedSoldier, IEngineer
 {
-    public Engineer(List<Repair> setOfRepairs, string corps, string id, string firstName, string lastName, double salary)
+    public Engineer(int id, string firstName, string lastName, decimal salary, string corps)
+        : base(id, firstName, lastName, salary, corps)
     {
-        this.SetOfRepairs = setOfRepairs;
-        this.Corps = corps;
-        this.Id = id;
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Salary = salary;
+        this.repairs = new List<IRepair>();
     }
 
-    public List<Repair> SetOfRepairs { get; }
-    public string Corps { get; }
-    public string Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
-    public double Salary { get; }
+    private ICollection<IRepair> repairs;
+    public IReadOnlyCollection<IRepair> Repairs
+        => (IReadOnlyCollection<IRepair>)repairs;
+
+    public void AddRepair(IRepair repair)
+    {
+        repairs.Add(repair);
+    }
     public override string ToString()
     {
         var sb = new StringBuilder();
-        sb.AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id} Salary: {this.Salary:f2}")
-         .AppendLine($"Corps: {this.Corps}")
-        .AppendLine("Repairs:");
+        sb.AppendLine(base.ToString())
+            .AppendLine($"{nameof(this.Corps)}: {this.Corps.ToString()}")
+            .AppendLine($"{nameof(this.Repairs)}:");
 
-        foreach (var currentRepair in SetOfRepairs)
+        foreach (var currentRepair in this.Repairs)
         {
-            sb.AppendLine(currentRepair.ToString());
+            sb.AppendLine($"  {currentRepair.ToString()}");
         }
-        return sb.ToString();
+        var result = sb.ToString().TrimEnd();
+        return result;
     }
 }

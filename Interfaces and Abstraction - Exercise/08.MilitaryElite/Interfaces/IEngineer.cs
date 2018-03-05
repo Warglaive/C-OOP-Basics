@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public interface IEngineer
+public interface IEngineer : ISpecialisedSoldier
 {
-    List<Repair> SetOfRepairs { get; }
+    IReadOnlyCollection<IRepair> Repairs { get; }
+    void AddRepair(IRepair repair);
 }

@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-
-public interface ILeutenantGeneral
+public interface ILeutenantGeneral : IPrivate
 {
-    List<Private> SetOfPrivates { get; }
+    IReadOnlyCollection<ISoldier> Privates { get; }
+    void AddPrivate(ISoldier soldier);
 }

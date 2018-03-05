@@ -3,28 +3,19 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Spy : ISoldier, ISpy
+public class Spy : Soldier, ISpy
 {
-    public Spy(int codeNumber, string firstName,
-        string lastName, string id)
+    public Spy(int id, string firstName, string lastName, int codeNumber)
+        : base(id, firstName, lastName)
     {
-        this.CodeNumber = codeNumber;
-        this.FirstName = firstName;
-        this.LastName = lastName;
-        this.Id = id;
+        CodeNumber = codeNumber;
     }
 
-    public int CodeNumber { get; }
-    public string Id { get; }
-    public string FirstName { get; }
-    public string LastName { get; }
-
+    public int CodeNumber { get; private set; }
     public override string ToString()
     {
-        var sb = new StringBuilder();
-        sb.AppendLine($"Spy:")
-            .AppendLine($"Name: {this.FirstName} {this.LastName} Id: {this.Id}")
-            .Append($"Code Number: {this.CodeNumber}");
-        return sb.ToString();
+        return $"{base.ToString()}{Environment.NewLine}Code Number: " +
+               $"{this.CodeNumber}";
     }
 }
+
