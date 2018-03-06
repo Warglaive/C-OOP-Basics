@@ -15,9 +15,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "05.BorderControl", "05.Bord
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "06.BirthdayCelebrations", "06.BirthdayCelebrations\06.BirthdayCelebrations.csproj", "{4D829294-AB49-4FD0-B241-8B2938C66A2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07.FoodShortage", "07.FoodShortage\07.FoodShortage.csproj", "{F703DB52-A400-4A38-9DCC-83492D80F876}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "07.FoodShortage", "07.FoodShortage\07.FoodShortage.csproj", "{F703DB52-A400-4A38-9DCC-83492D80F876}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08.MilitaryElite", "08.MilitaryElite\08.MilitaryElite.csproj", "{CB981FAA-C6EB-4D79-85FD-642E1561842B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "08.MilitaryElite", "08.MilitaryElite\08.MilitaryElite.csproj", "{CB981FAA-C6EB-4D79-85FD-642E1561842B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09.CollectionHierarchy", "09.CollectionHierarchy\09.CollectionHierarchy.csproj", "{49B1B13C-D777-43AD-A54F-7B09121ED3D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{CB981FAA-C6EB-4D79-85FD-642E1561842B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB981FAA-C6EB-4D79-85FD-642E1561842B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB981FAA-C6EB-4D79-85FD-642E1561842B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B1B13C-D777-43AD-A54F-7B09121ED3D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B1B13C-D777-43AD-A54F-7B09121ED3D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B1B13C-D777-43AD-A54F-7B09121ED3D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B1B13C-D777-43AD-A54F-7B09121ED3D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
