@@ -5,25 +5,24 @@ using System.Text;
 
 public class Car : Vehicle
 {
-    public Car(decimal fuelQuantity, decimal fuelConsumationPerKm)
+    public Car(double fuelQuantity, double fuelConsumationPerKm)
     {
         this.FuelQuantity = fuelQuantity;
-        this.FuelConsumationPerKm = fuelConsumationPerKm;
+        this.FuelConsumationPerKm = fuelConsumationPerKm + 0.9;
     }
-    public override decimal FuelConsumationPerKm
+    public override double FuelConsumationPerKm
     {
         get => base.FuelConsumationPerKm;
         set => base.FuelConsumationPerKm = value;
     }
 
-    public override decimal FuelQuantity
+    public override double FuelQuantity
     {
         get => base.FuelQuantity;
-        set { base.FuelQuantity = value + 0.9m; }
+        set { base.FuelQuantity = value; }
     }
-
-    public void PrintNotEnought(string vehicleType, decimal distance)
+    public void Refuel(double refuelQuantity)
     {
-        throw new NotImplementedException();
+        this.FuelQuantity += refuelQuantity;
     }
 }

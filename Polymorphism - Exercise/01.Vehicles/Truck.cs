@@ -5,21 +5,25 @@ using System.Text;
 
 public class Truck : Vehicle
 {
-    public Truck(decimal fuelQuantity, decimal fuelConsumationPerKm)
+    public Truck(double fuelQuantity, double fuelConsumationPerKm)
     {
         this.FuelQuantity = fuelQuantity;
-        this.FuelConsumationPerKm = fuelConsumationPerKm;
+        this.FuelConsumationPerKm = fuelConsumationPerKm + 1.6;
     }
 
-    public override decimal FuelQuantity
+    public override double FuelQuantity
     {
         get { return base.FuelQuantity; }
-        set { base.FuelQuantity = value + 1.6m; }
+        set { base.FuelQuantity = value; }
     }
 
-    public override decimal FuelConsumationPerKm
+    public override double FuelConsumationPerKm
     {
         get { return base.FuelConsumationPerKm; }
         set { base.FuelConsumationPerKm = value; }
+    }
+    public void Refuel(double refuelQuantity)
+    {
+        this.FuelQuantity += refuelQuantity;
     }
 }

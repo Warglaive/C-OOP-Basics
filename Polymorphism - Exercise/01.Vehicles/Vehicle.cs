@@ -4,14 +4,26 @@ using System.Text;
 
 public abstract class Vehicle
 {
-    public virtual decimal FuelQuantity { get; set; }
-    public virtual decimal FuelConsumationPerKm { get; set; }
-    public virtual decimal GivenDistance { get; set; }
-    public virtual decimal RefuelAmount { get; set; }
+    public virtual double FuelQuantity { get; set; }
+    public virtual double FuelConsumationPerKm { get; set; }
+    public virtual double GivenDistance { get; set; }
+    public virtual double RefuelAmount { get; set; }
 
-    public void PrintEnought(string type, decimal distance)
+    public void PrintIsEnoughtFuel(string type, double distance)
     {
         Console.WriteLine($"{type} travelled {distance} km");
-        this.FuelQuantity -= this.FuelConsumationPerKm * distance;
+        if (type == "Car")
+        {
+            this.FuelQuantity = this.FuelQuantity - distance * this.FuelConsumationPerKm;
+        }
+        else
+        {
+            this.FuelQuantity = this.FuelQuantity - distance * this.FuelConsumationPerKm;
+        }
+    }
+
+    public void PrintNotEnoughFuel(string type)
+    {
+        Console.WriteLine($"{type} needs refueling");
     }
 }
