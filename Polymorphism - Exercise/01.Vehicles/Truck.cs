@@ -3,27 +3,41 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Truck : Vehicle
+public class Truck : IVehicle
 {
-    public Truck(double fuelQuantity, double fuelConsumationPerKm)
+    public Truck(double fuelQuantity, double fuelConsumePerKm)
     {
-        this.FuelQuantity = fuelQuantity;
-        this.FuelConsumationPerKm = fuelConsumationPerKm + 1.6;
+        FuelQuantity = fuelQuantity;
+        FuelConsumePerKm = fuelConsumePerKm + 1.6;
+    }
+    public double FuelQuantity { get; private set; }
+    public double FuelConsumePerKm { get; private set; }
+
+    public void Drive(double distance)
+    {
+        //check if fuel is enought for current distance
+        var currentPossibleDistance = FuelQuantity / FuelConsumePerKm;
+        var distanceNeeded = distance * FuelConsumePerKm;
+        //
+        if (currentPossibleDistance > distanceNeeded)
+        {
+            this.FuelQuantity -= distance * this.FuelConsumePerKm;
+            Console.WriteLine($"Truck travelled {distance} km");
+        }
+        else
+        {
+            Console.WriteLine($"Truck needs refueling");
+        }
     }
 
-    public override double FuelQuantity
+    public void Refuel(double liters)
     {
-        get { return base.FuelQuantity; }
-        set { base.FuelQuantity = value; }
+        liters *= 0.95;
+        this.FuelQuantity += liters;
     }
 
-    public override double FuelConsumationPerKm
+    public override string ToString()
     {
-        get { return base.FuelConsumationPerKm; }
-        set { base.FuelConsumationPerKm = value; }
-    }
-    public void Refuel(double refuelQuantity)
-    {
-        this.FuelQuantity += refuelQuantity;
+        return $"Truck: {this.FuelQuantity:f2}";
     }
 }

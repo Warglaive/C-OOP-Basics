@@ -1,74 +1,60 @@
 ﻿using System;
+using System.Linq;
+
 
 public class Program
 {
     public static void Main()
     {
-        var carInfo = Console.ReadLine().Split();
-        var fuelQuantityCar = double.Parse(carInfo[1]);
-        var fuelConsumPerKm = double.Parse(carInfo[2]);
-
-        var currentCar = new Car(fuelQuantityCar, fuelConsumPerKm);
-
+        var carInfo = Console.ReadLine().Split(new[] { ' ' }
+        , StringSplitOptions.RemoveEmptyEntries)
+        .ToList();
+        var fuelQuantity = double.Parse(carInfo[1]);
+        var litersPerKm = double.Parse(carInfo[2]);
+        var currentCar = new Car(fuelQuantity, litersPerKm);
+        //
         var truckInfo = Console.ReadLine().Split(new[] { ' ' }
-        , StringSplitOptions.RemoveEmptyEntries);
+                , StringSplitOptions.RemoveEmptyEntries)
+            .ToList();
         var fuelQuantityTruck = double.Parse(truckInfo[1]);
-        var fuelConsumPerKmTruck = double.Parse(truckInfo[2]);
+        var litersPerKmTruck = double.Parse(truckInfo[2]);
+        var currentTruck = new Truck(fuelQuantityTruck, litersPerKmTruck);
 
-        var currentTruck = new Truck(fuelQuantityTruck, fuelConsumPerKmTruck);
-        var commandsNumber = int.Parse(Console.ReadLine());
-
-        for (int i = 0; i < commandsNumber; i++)
+        var n = int.Parse(Console.ReadLine());
+        for (var i = 0; i < n; i++)
         {
-            var input = Console.ReadLine().Split(new[] {' '}
-                , StringSplitOptions.RemoveEmptyEntries);
-            var command = input[0];
-            var vehicleType = input[1];
+            var commands = Console.ReadLine().Split(new[] { ' ' }
+                    , StringSplitOptions.RemoveEmptyEntries)
+                .ToList();
+            var command = commands[0];
+            var vehicleType = commands[1];
             switch (command)
             {
                 case "Drive":
-                    var distance = double.Parse(input[2]);
+                    var distance = double.Parse(commands[2]);
                     if (vehicleType == "Car")
                     {
-                        var neededFuel = distance * currentCar.FuelConsumationPerKm;
-                        if (currentCar.FuelQuantity / currentCar.FuelConsumationPerKm > neededFuel)
-                        {
-                            currentCar.PrintIsEnoughtFuel(vehicleType, distance);
-                        }
-                        else
-                        {
-                            currentCar.PrintNotEnoughFuel(vehicleType);
-                        }
+                        currentCar.Drive(distance);
                     }
                     else
                     {
-                        var neededFuelTruck = distance * currentTruck.FuelConsumationPerKm;
-                        if (currentTruck.FuelQuantity / currentTruck.FuelConsumationPerKm > neededFuelTruck)
-                        {
-                            currentTruck.PrintIsEnoughtFuel(vehicleType, distance);
-                        }
-                        else
-                        {
-                            currentTruck.PrintNotEnoughFuel(vehicleType);
-                        }
+                        currentTruck.Drive(distance);
                     }
                     break;
                 case "Refuel":
+                    var liters = double.Parse(commands[2]);
                     if (vehicleType == "Car")
                     {
-                        var refuelQuantity = double.Parse(input[2]);
-                        currentCar.Refuel(refuelQuantity);
+                        currentCar.Refuel(liters);
                     }
                     else
                     {
-                        var refuelQuantity = double.Parse(input[2]);
-                        var lessFuel = refuelQuantity * 0.95;
-                        currentTruck.Refuel(lessFuel);
+                        currentTruck.Refuel(liters);
                     }
                     break;
             }
         }
-        Console.WriteLine($"Car: {currentCar.FuelQuantity:f2}");
-        Console.WriteLine($"Truck: {currentTruck.FuelQuantity:f2}");
+        Console.WriteLine(currentCar);
+        Console.WriteLine(currentTruck);
     }
 }
