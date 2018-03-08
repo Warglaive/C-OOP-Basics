@@ -7,6 +7,7 @@ public class Car : IVehicle
 {
     public Car(double fuelQuantity, double fuelConsumePerKm, double tankCapacity)
     {
+        this.TankCapacity = tankCapacity;
         if (fuelQuantity > tankCapacity)
         {
             this.FuelQuantity = 0;
@@ -15,7 +16,6 @@ public class Car : IVehicle
         {
             this.FuelQuantity = fuelQuantity;
         }
-        this.TankCapacity = tankCapacity;
         this.FuelConsumePerKm = fuelConsumePerKm + 0.9;
     }
     public double FuelConsumePerKm { get; }
