@@ -33,14 +33,14 @@ public class Bus : IVehicle
     public void Drive(double distance) // With people
     {
         //check if fuel is enought for current distance
-        this.FuelConsumePerKm += 1.4;
-        if (distance * this.FuelConsumePerKm > this.FuelQuantity)
+        var consumedFuel = distance * (this.FuelConsumePerKm + 1.4);
+        if (consumedFuel > this.FuelQuantity)
         {
             Console.WriteLine($"Bus needs refueling");
         }
         else
         {
-            this.FuelQuantity -= distance * this.FuelConsumePerKm;
+            this.FuelQuantity -= consumedFuel;
             Console.WriteLine($"Bus travelled {distance} km");
         }
     }
