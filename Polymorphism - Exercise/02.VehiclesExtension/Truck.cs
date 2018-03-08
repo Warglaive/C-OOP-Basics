@@ -7,8 +7,15 @@ public class Truck : IVehicle
 {
     public Truck(double fuelQuantity, double fuelConsumePerKm, double tankCapacity)
     {
+        if (fuelQuantity > tankCapacity)
+        {
+            this.FuelQuantity = 0;
+        }
+        else
+        {
+            this.FuelQuantity = fuelQuantity;
+        }
         this.TankCapacity = tankCapacity;
-        this.FuelQuantity = fuelQuantity;
         this.FuelConsumePerKm = fuelConsumePerKm + 1.6;
     }
     public double FuelConsumePerKm { get; }
@@ -20,15 +27,8 @@ public class Truck : IVehicle
     {
         get { return fuelQuantity; }
         set
-        {
-            if (value > this.TankCapacity)
-            {
-                fuelQuantity = 0;
-            }
-            else
-            {
-                fuelQuantity = value;
-            }
+        { 
+            fuelQuantity = value;
         }
     }
 

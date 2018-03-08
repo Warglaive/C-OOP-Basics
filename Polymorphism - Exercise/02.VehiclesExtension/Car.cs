@@ -7,12 +7,17 @@ public class Car : IVehicle
 {
     public Car(double fuelQuantity, double fuelConsumePerKm, double tankCapacity)
     {
+        if (fuelQuantity > tankCapacity)
+        {
+            this.FuelQuantity = 0;
+        }
+        else
+        {
+            this.FuelQuantity = fuelQuantity;
+        }
         this.TankCapacity = tankCapacity;
-        this.FuelQuantity = fuelQuantity;
         this.FuelConsumePerKm = fuelConsumePerKm + 0.9;
     }
-
-    //public double FuelQuantity { get; private set; }
     public double FuelConsumePerKm { get; }
     public double TankCapacity { get; }
 
@@ -23,32 +28,20 @@ public class Car : IVehicle
         get { return fuelQuantity; }
         set
         {
-            if (value > this.TankCapacity)
-            {
-                fuelQuantity = 0;
-            }
-            else
-            {
-                fuelQuantity = value;
-            }
+            fuelQuantity = value;
         }
     }
-
-
     public void Drive(double distance)
     {
         //check if fuel is enought for current distance
-        var currentPossibleDistance = FuelQuantity * FuelConsumePerKm;
-        var distanceNeeded = distance * FuelConsumePerKm;
-        //
-        if (currentPossibleDistance >= distanceNeeded)
+        if (distance * FuelConsumePerKm > FuelQuantity)
         {
-            this.FuelQuantity -= distance * this.FuelConsumePerKm;
-            Console.WriteLine($"Car travelled {distance} km");
+            Console.WriteLine($"Car needs refueling");
         }
         else
         {
-            Console.WriteLine($"Car needs refueling");
+            this.FuelQuantity -= distance * this.FuelConsumePerKm;
+            Console.WriteLine($"Car travelled {distance} km");
         }
     }
 
