@@ -16,17 +16,15 @@ public class Truck : IVehicle
     public void Drive(double distance)
     {
         //check if fuel is enought for current distance
-        var currentPossibleDistance = FuelQuantity / FuelConsumePerKm;
-        var distanceNeeded = distance * FuelConsumePerKm;
-        //
-        if (currentPossibleDistance > distanceNeeded)
+
+        if (distance * FuelConsumePerKm > FuelQuantity)
         {
-            this.FuelQuantity -= distance * this.FuelConsumePerKm;
-            Console.WriteLine($"Truck travelled {distance} km");
+            Console.WriteLine($"Truck needs refueling");
         }
         else
         {
-            Console.WriteLine($"Truck needs refueling");
+            this.FuelQuantity -= distance * this.FuelConsumePerKm;
+            Console.WriteLine($"Truck travelled {distance} km");
         }
     }
 
