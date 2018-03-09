@@ -3,14 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public abstract class Harvester
+public class Harvester
 {
-    public Harvester(string id, double oreOutput, double energyRequirement)
+    protected Harvester(string id, double oreOutput, double energyRequirement)
     {
-        if (energyRequirement > 20000)
-        {
-            throw new ArgumentException("above 20k");
-        }
         this.Id = id;
         this.OreOutput = oreOutput;
         this.EnergyRequirement = energyRequirement;
@@ -19,44 +15,31 @@ public abstract class Harvester
     private double oreOutput;
     private double energyRequirement;
 
-    public double EnergyRequirement
+    protected double EnergyRequirement
     {
         get { return energyRequirement; }
         set
         {
-            if (value < 0)
-            {
-            }
-            else
-            {
-                energyRequirement = value;
-            }
-            if (value > 20000)
-            {
-            }
-            else
+            if (value >= 0 && value <= 20000)
             {
                 energyRequirement = value;
             }
         }
     }
 
-    public double OreOutput
+    protected double OreOutput
     {
         get { return oreOutput; }
         set
         {
-            if (value < 0)
-            {
-            }
-            else
+            if (value >= 0)
             {
                 oreOutput = value;
             }
         }
     }
 
-    public string Id
+    private string Id
     {
         get { return id; }
         set { id = value; }

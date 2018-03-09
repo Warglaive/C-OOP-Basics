@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Text;
 
-
 public class SonicHarvester : Harvester
 {
-    private double sonicFactor;
-    public SonicHarvester(string id, double oreOutput, double energyRequirement, int sonicFactor)
+    private int sonicFactor;
+    public SonicHarvester(string id, double oreOutput,
+        double energyRequirement, int sonicFactor)
+
         : base(id, oreOutput, energyRequirement)
     {
         this.SonicFactor = sonicFactor;
-        this.EnergyRequirement /= this.SonicFactor;
+        this.EnergyRequirement = energyRequirement / sonicFactor;
     }
 
-    private double SonicFactor
+    private int SonicFactor
     {
         get { return sonicFactor; }
         set
