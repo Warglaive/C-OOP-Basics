@@ -6,11 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UserInterface\ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Forum.Models\Forum.Models.csproj" />
+    <ProjectReference Include="..\..\Forum.Models\Forum.Models.csproj" />
   </ItemGroup>
 
 </Project>
