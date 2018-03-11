@@ -6,7 +6,7 @@ namespace Forum.Data
     {
         public static void Main()
         {
-            
+            Main();
         }
     }
 }

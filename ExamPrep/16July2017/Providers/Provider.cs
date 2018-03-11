@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Provider
+public class Provider : IMiner
 {
-    private string id;
     private double energyOutput;
+    public string Id { get; set; }
 
     protected Provider(string id, double energyOutput)
     {
@@ -19,16 +19,12 @@ public class Provider
         get { return energyOutput; }
         set
         {
-            if (value >= 0 && value < 10000)
+            if (value < 0 || value >= 10000)
             {
-                energyOutput = value;
+                throw new ArgumentException("must be positive and <= 10000");
             }
+            energyOutput = value;
         }
     }
 
-    private string Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
 }

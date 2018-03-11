@@ -3,45 +3,44 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class Harvester
+public class Harvester : IMiner
 {
+    private double oreOutput;
+    private double energyRequirement;
+    public string Id { get; set; }
+
     protected Harvester(string id, double oreOutput, double energyRequirement)
     {
         this.Id = id;
         this.OreOutput = oreOutput;
         this.EnergyRequirement = energyRequirement;
     }
-    private string id;
-    private double oreOutput;
-    private double energyRequirement;
 
     protected double EnergyRequirement
     {
-        get { return energyRequirement; }
+        get => energyRequirement;
         set
         {
-            if (value >= 0 && value <= 20000)
+            if (value > 20000)
             {
-                energyRequirement = value;
+                throw new ArgumentException("Energy above 20k");
             }
+            energyRequirement = value;
         }
     }
 
     protected double OreOutput
     {
-        get { return oreOutput; }
+        get => oreOutput;
         set
         {
-            if (value >= 0)
+            if (value < 0)
             {
-                oreOutput = value;
+                throw new ArgumentException("Negative Ore Output");
             }
+            oreOutput = value;
         }
     }
 
-    private string Id
-    {
-        get { return id; }
-        set { id = value; }
-    }
 }
+
