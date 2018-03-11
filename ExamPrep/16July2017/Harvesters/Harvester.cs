@@ -5,31 +5,31 @@ using System.Text;
 
 public class Harvester : IMiner
 {
-    private double oreOutput;
-    private double energyRequirement;
+    public double oreOutput;
+    public double energyRequirement;
     public string Id { get; set; }
 
-    protected Harvester(string id, double oreOutput, double energyRequirement)
+    public Harvester(string id, double oreOutput, double energyRequirement)
     {
         this.Id = id;
         this.OreOutput = oreOutput;
         this.EnergyRequirement = energyRequirement;
     }
 
-    protected double EnergyRequirement
+    public double EnergyRequirement
     {
         get => energyRequirement;
         set
         {
             if (value > 20000)
             {
-                throw new ArgumentException("Energy above 20k");
+                throw new ArgumentException("EnergyRequirement");
             }
             energyRequirement = value;
         }
     }
 
-    protected double OreOutput
+    public double OreOutput
     {
         get => oreOutput;
         set

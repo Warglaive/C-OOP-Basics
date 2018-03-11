@@ -1,12 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace _16July2017
+public class Program
 {
-    class Program
+    public static void Main()
     {
-        static void Main(string[] args)
+        var draftManager = new DraftManager();
+        var inputCommands = Console.ReadLine()
+            .Split().ToList();
+        var command = inputCommands[0];
+        switch (command)
         {
-            Console.WriteLine("Hello World!");
+            case "RegisterHarvester":
+                Console.WriteLine(draftManager.RegisterHarvester(inputCommands));
+                break;
+            case "RegisterProvider":
+                Console.WriteLine(draftManager.RegisterProvider(inputCommands));
+                break;
+
         }
     }
 }
