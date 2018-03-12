@@ -10,6 +10,8 @@ public class Program
         var inputCommands = Console.ReadLine()
             .Split().ToList();
         var command = inputCommands[0];
+
+        //NOTE: DraftManager class methods are called from the outside so these methods must NOT receive the command parameter as part of the arguments!
         switch (command)
         {
             case "RegisterHarvester":

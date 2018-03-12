@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using System.Text;
 public class DraftManager
 {
+    public List<Harvester> harvesters;
+    public List<Provider> providers;
+
+    public DraftManager()
+    {
+        this.harvesters = new List<Harvester>();
+        this.providers = new List<Provider>();
+    }
     public string RegisterHarvester(List<string> arguments)
     {
         try
@@ -11,25 +19,28 @@ public class DraftManager
             var id = arguments[2];
             var oreOutput = double.Parse(arguments[3]);
             var energyRequirement = double.Parse(arguments[4]);
-            var sonicFactor = -1;
 
             if (type == "Sonic")
             {
-                sonicFactor = int.Parse(arguments[5]);
-                var sonicHarvester = new SonicHarvester(id, oreOutput, energyRequirement, sonicFactor);
+                //factory that return harvester
+                var sonicHarvesterFactory = new SonicHarvesterFactory();
+                var sonicFactor = int.Parse(arguments[5]);
+                var sonicHarvester = sonicHarvesterFactory.GenerateHarvester(id, oreOutput, energyRequirement, sonicFactor);
+                //add to list
+                harvesters.Add(sonicHarvester);
                 return $"Successfully registered {sonicHarvester.GetType().Name} Harvester – {sonicHarvester.Id}";
             }
-            else
-            {
-                var hammerHarvester = new HammerHarvester(id, oreOutput, energyRequirement);
-                return $"Successfully registered {hammerHarvester.GetType().Name} Harvester – {hammerHarvester.Id}";
-            }
+            // if type == Hammer
+            var hammerHarvesterFactory = new HammerHarvesterFactory();
+            var hammerHarvester = hammerHarvesterFactory.GenerateHammerHarvester(id, oreOutput, energyRequirement);
+            //add to list
+            harvesters.Add(hammerHarvester);
+            return $"Successfully registered {hammerHarvester.GetType().Name} Harvester – {hammerHarvester.Id}";
         }
         catch (Exception e)
         {
             return $"Harvester is not registered, because of it's {e.Message}";
         }
-
     }
     public string RegisterProvider(List<string> arguments)
     {
@@ -41,12 +52,18 @@ public class DraftManager
 
             if (type == "Solar")
             {
-                var solarProvider = new SolarProvider(id, energyRequirement);
+                var solarProviderFactory = new SolarProviderFactory();
+                var solarProvider = solarProviderFactory.GenerateSolarProvider(id, energyRequirement);
+                //add to list
+                providers.Add(solarProvider);
                 return $"Successfully registered {solarProvider.GetType().Name} Provider – {solarProvider.Id}";
             }
             else //Pressure
             {
-                var pressureProvider = new PressureProvider(id, energyRequirement);
+                var pressureProviderFactory = new PressureProviderFactory();
+                var pressureProvider = pressureProviderFactory.PressureProviderGenerator(id, energyRequirement);
+                //add to list
+                providers.Add(pressureProvider);
                 return $"Successfully registered {pressureProvider.GetType().Name} Provider – {pressureProvider.Id}";
             }
         }
