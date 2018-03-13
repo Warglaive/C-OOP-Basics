@@ -11,8 +11,7 @@ public class DraftManager
 
     public DraftManager()
     {
-        this.mode = string.Empty;
-
+        this.mode = "Full";
         this.harvesters = new List<Harvester>();
         this.providers = new List<Provider>();
     }
@@ -77,23 +76,54 @@ public class DraftManager
             return $"Provider is not registered, because of it's {e.Message}";
         }
     }
-    public string Day(double totalOre, double providedEnergy)
+    public string Day(double currentDayOre, double providedEnergy)
     {
         var dayMsg = "A day has passed." + Environment.NewLine +
                      $"Energy Provided: {providedEnergy}" + Environment.NewLine +
-                     $"Plumbus Ore Mined: {totalOre}";
+                     $"Plumbus Ore Mined: {currentDayOre}";
         return dayMsg;
     }
-    //string Mode(List<string> arguments)
-    //{
-    //    //TODO: Add some logic here …
-    //}
-    //string Check(List<string> arguments)
-    //{
-    //    //TODO: Add some logic here …
-    //}
-    //string ShutDown()
-    //{
-    //    //TODO: Add some logic here …
-    //}
+    public string Mode(List<string> arguments)
+    {
+        this.mode = arguments[1];
+        Console.WriteLine($"Successfully changed working mode to {this.mode} Mode");
+        return this.mode;
+    }
+    public string Check(List<string> arguments)
+    {
+        var result = string.Empty;
+        var checkId = arguments[1];
+        //search in harvesters
+        foreach (var currentHarvester in harvesters)
+        {
+            if (checkId == currentHarvester.Id)
+            {
+                result += $"{currentHarvester.GetType().Name} Harvester – {checkId}"
+                    + Environment.NewLine
+                    + $"Ore Output: {currentHarvester.OreOutput}"
+                    + Environment.NewLine
+                    + $"Energy Requirement: {currentHarvester.EnergyRequirement}";
+                return result;
+            }
+        }
+        //search in providers
+        foreach (var currentProvider in providers)
+        {
+            if (checkId == currentProvider.Id)
+            {
+                result += $"{currentProvider.GetType().Name} Provider – {checkId}"
+                    + Environment.NewLine
+                    + $"Energy Output: {currentProvider.EnergyOutput}";
+                return result;
+            }
+        }
+        return $"No element found with id – {checkId}.";
+    }
+    public string ShutDown()
+    {
+        var result = string.Empty;
+        result += "System Shutdown"
+                  + Environment.NewLine;
+        return result;
+    }
 }

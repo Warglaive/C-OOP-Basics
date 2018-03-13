@@ -5,9 +5,9 @@ using System.Text;
 
 public class HammerHarvesterFactory
 {
-    public HammerHarvester GenerateHammerHarvester(string id, double oreOutput, double energyRequirement)
+    public Hammer GenerateHammerHarvester(string id, double oreOutput, double energyRequirement)
     {
-        var hammerHarvester = new HammerHarvester(id, oreOutput, energyRequirement);
+        var hammerHarvester = new Hammer(id, oreOutput, energyRequirement);
         return hammerHarvester;
     }
 }

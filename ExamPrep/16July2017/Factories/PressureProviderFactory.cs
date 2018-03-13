@@ -5,9 +5,9 @@ using System.Text;
 
 public class PressureProviderFactory
 {
-    public PressureProvider PressureProviderGenerator(string id, double energyOutput)
+    public Pressure PressureProviderGenerator(string id, double energyOutput)
     {
-        var pressureProvider = new PressureProvider(id, energyOutput);
+        var pressureProvider = new Pressure(id, energyOutput);
         return pressureProvider;
     }
 }

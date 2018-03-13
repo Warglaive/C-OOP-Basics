@@ -5,9 +5,9 @@ using System.Text;
 
 public class SonicHarvesterFactory
 {
-    public SonicHarvester GenerateHarvester(string id, double oreOutput, double energyRequirement, int sonicFactor)
+    public Sonic GenerateHarvester(string id, double oreOutput, double energyRequirement, int sonicFactor)
     {
-        var sonicHarvester = new SonicHarvester(id, oreOutput, energyRequirement, sonicFactor);
+        var sonicHarvester = new Sonic(id, oreOutput, energyRequirement, sonicFactor);
         return sonicHarvester;
     }
 }

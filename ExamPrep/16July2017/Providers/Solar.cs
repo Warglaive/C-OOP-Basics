@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 
-public class SolarProvider : Provider
+public class Solar : Provider
 {
-    public SolarProvider(string id, double energyOutput) 
+    public Solar(string id, double energyOutput) 
         : base(id, energyOutput)
     {
     }
