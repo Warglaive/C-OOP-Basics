@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 
 public class Program
@@ -9,19 +8,22 @@ public class Program
         var draftManager = new DraftManager();
         var inputCommands = Console.ReadLine()
             .Split().ToList();
+
         double totalEnergy = 0;
         double totalOre = 0;
+        var command = inputCommands[0];
         while (inputCommands[0] != "Shutdown")
         {
-            var command = inputCommands[0];
+            command = inputCommands[0];
+            var input = inputCommands.Skip(1).ToList();
             //NOTE: DraftManager class methods are called from the outside so these methods must NOT receive the command parameter as part of the arguments!
             switch (command)
             {
                 case "RegisterHarvester":
-                    Console.WriteLine(draftManager.RegisterHarvester(inputCommands));
+                    Console.WriteLine(draftManager.RegisterHarvester(input));
                     break;
                 case "RegisterProvider":
-                    Console.WriteLine(draftManager.RegisterProvider(inputCommands));
+                    Console.WriteLine(draftManager.RegisterProvider(input));
                     break;
                 case "Day":
                     var providedEnergy = draftManager
@@ -75,10 +77,10 @@ public class Program
                     //
                     break;
                 case "Mode":
-                    draftManager.Mode(inputCommands);
+                    Console.WriteLine(draftManager.Mode(input));
                     break;
                 case "Check":
-                    Console.WriteLine(draftManager.Check(inputCommands));
+                    Console.WriteLine(draftManager.Check(input));
                     break;
             }
             inputCommands = Console.ReadLine()

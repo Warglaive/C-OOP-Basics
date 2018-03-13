@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public class HammerHarvesterFactory
+﻿public class HammerHarvesterFactory
 {
     public Hammer GenerateHammerHarvester(string id, double oreOutput, double energyRequirement)
     {

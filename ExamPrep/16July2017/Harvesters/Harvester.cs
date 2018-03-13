@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 
-public class Harvester : IMiner
+public abstract class Harvester
 {
-    public double oreOutput;
-    public double energyRequirement;
+    private double oreOutput;
+    private double energyRequirement;
     public string Id { get; set; }
 
-    public Harvester(string id, double oreOutput, double energyRequirement)
+    protected Harvester(string id, double oreOutput, double energyRequirement)
     {
         this.Id = id;
         this.OreOutput = oreOutput;

@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 
-public class Provider : IMiner
+public abstract class Provider
 {
-    public double energyOutput;
+    private double energyOutput;
     public string Id { get; set; }
 
-    public Provider(string id, double energyOutput)
+    protected Provider(string id, double energyOutput)
     {
         this.Id = id;
         this.EnergyOutput = energyOutput;

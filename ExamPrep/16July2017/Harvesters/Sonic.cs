@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-
-public class Sonic : Harvester
+﻿public class Sonic : Harvester
 {
     public Sonic(string id, double oreOutput, double energyRequirement,
         int sonicFactor)
