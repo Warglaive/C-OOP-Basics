@@ -1,13 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 public class DraftManager
 {
     public List<Harvester> harvesters;
     public List<Provider> providers;
+    public string mode;
+    public double oreMined;
 
     public DraftManager()
     {
+        this.mode = string.Empty;
+
         this.harvesters = new List<Harvester>();
         this.providers = new List<Provider>();
     }
@@ -72,10 +77,13 @@ public class DraftManager
             return $"Provider is not registered, because of it's {e.Message}";
         }
     }
-    //string Day(List<Provider> providers, double providedEnery)
-    //{
-
-    //}
+    public string Day(double totalOre, double providedEnergy)
+    {
+        var dayMsg = "A day has passed." + Environment.NewLine +
+                     $"Energy Provided: {providedEnergy}" + Environment.NewLine +
+                     $"Plumbus Ore Mined: {totalOre}";
+        return dayMsg;
+    }
     //string Mode(List<string> arguments)
     //{
     //    //TODO: Add some logic here …
