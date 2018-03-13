@@ -70,11 +70,12 @@ public class Program
                     else if (draftManager.mode == "Energy")
                     {
                         //Consume nothing, produce nothing
+                        Console.WriteLine(draftManager.Day(totalOre, providedEnergy));
                     }
                     //
                     break;
                 case "Mode":
-                    Console.WriteLine(draftManager.Mode(inputCommands));
+                    draftManager.Mode(inputCommands);
                     break;
                 case "Check":
                     Console.WriteLine(draftManager.Check(inputCommands));

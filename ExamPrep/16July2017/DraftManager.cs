@@ -32,14 +32,14 @@ public class DraftManager
                 var sonicHarvester = sonicHarvesterFactory.GenerateHarvester(id, oreOutput, energyRequirement, sonicFactor);
                 //add to list
                 harvesters.Add(sonicHarvester);
-                return $"Successfully registered {sonicHarvester.GetType().Name} Harvester – {sonicHarvester.Id}";
+                return $"Successfully registered {sonicHarvester.GetType().Name} Harvester - {sonicHarvester.Id}";
             }
             // if type == Hammer
             var hammerHarvesterFactory = new HammerHarvesterFactory();
             var hammerHarvester = hammerHarvesterFactory.GenerateHammerHarvester(id, oreOutput, energyRequirement);
             //add to list
             harvesters.Add(hammerHarvester);
-            return $"Successfully registered {hammerHarvester.GetType().Name} Harvester – {hammerHarvester.Id}";
+            return $"Successfully registered {hammerHarvester.GetType().Name} Harvester - {hammerHarvester.Id}";
         }
         catch (Exception e)
         {
@@ -60,7 +60,7 @@ public class DraftManager
                 var solarProvider = solarProviderFactory.GenerateSolarProvider(id, energyRequirement);
                 //add to list
                 providers.Add(solarProvider);
-                return $"Successfully registered {solarProvider.GetType().Name} Provider – {solarProvider.Id}";
+                return $"Successfully registered {solarProvider.GetType().Name} Provider - {solarProvider.Id}";
             }
             else //Pressure
             {
@@ -68,7 +68,7 @@ public class DraftManager
                 var pressureProvider = pressureProviderFactory.PressureProviderGenerator(id, energyRequirement);
                 //add to list
                 providers.Add(pressureProvider);
-                return $"Successfully registered {pressureProvider.GetType().Name} Provider – {pressureProvider.Id}";
+                return $"Successfully registered {pressureProvider.GetType().Name} Provider - {pressureProvider.Id}";
             }
         }
         catch (Exception e)
@@ -98,7 +98,7 @@ public class DraftManager
         {
             if (checkId == currentHarvester.Id)
             {
-                result += $"{currentHarvester.GetType().Name} Harvester – {checkId}"
+                result += $"{currentHarvester.GetType().Name} Harvester - {checkId}"
                     + Environment.NewLine
                     + $"Ore Output: {currentHarvester.OreOutput}"
                     + Environment.NewLine
@@ -111,13 +111,13 @@ public class DraftManager
         {
             if (checkId == currentProvider.Id)
             {
-                result += $"{currentProvider.GetType().Name} Provider – {checkId}"
+                result += $"{currentProvider.GetType().Name} Provider - {checkId}"
                     + Environment.NewLine
                     + $"Energy Output: {currentProvider.EnergyOutput}";
                 return result;
             }
         }
-        return $"No element found with id – {checkId}.";
+        return $"No element found with id - {checkId}";
     }
     public string ShutDown()
     {
