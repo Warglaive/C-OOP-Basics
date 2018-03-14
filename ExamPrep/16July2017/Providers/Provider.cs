@@ -15,7 +15,7 @@ public abstract class Provider
     public double EnergyOutput
     {
         get { return energyOutput; }
-        set
+        private set
         {
             if (value < 0 || value >= 10000)
             {

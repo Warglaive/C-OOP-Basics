@@ -20,9 +20,15 @@ public abstract class Provider : Unit
         {
             if (value < 0 || value >= 10000)
             {
-                throw new ArgumentException("Provider is not registered, because of it's OreOutput");
+                throw new ArgumentException("Provider is not registered, because of it's EnergyOutput");
             }
             energyOutput = value;
         }
+    }
+    public override string ToString()
+    {
+        return $"{this.Type} Provider - {this.Id}"
+               + Environment.NewLine
+               + $"Energy Output: {this.EnergyOutput}";
     }
 }

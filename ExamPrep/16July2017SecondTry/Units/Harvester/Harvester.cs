@@ -44,4 +44,13 @@ public abstract class Harvester : Unit
             energyRequirement = value;
         }
     }
+
+    public override string ToString()
+    {
+        return $"{this.Type} Harvester - {this.Id}"
+               + Environment.NewLine
+               + $"Ore Output: {this.OreOutput}"
+               + Environment.NewLine
+               + $"Energy Requirement: {this.EnergyRequirement}";
+    }
 }

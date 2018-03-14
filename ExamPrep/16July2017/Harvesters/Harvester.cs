@@ -17,7 +17,7 @@ public abstract class Harvester
     public double EnergyRequirement
     {
         get => energyRequirement;
-        set
+        private set
         {
             if (value > 20000 || value < 0)
             {
@@ -30,7 +30,7 @@ public abstract class Harvester
     public double OreOutput
     {
         get => oreOutput;
-        set
+        private set
         {
             if (value < 0)
             {
