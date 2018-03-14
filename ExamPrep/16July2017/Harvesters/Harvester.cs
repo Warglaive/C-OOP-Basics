@@ -19,9 +19,9 @@ public abstract class Harvester
         get => energyRequirement;
         set
         {
-            if (value > 20000)
+            if (value > 20000 || value < 0)
             {
-                throw new ArgumentException("EnergyRequirement");
+                throw new ArgumentException("Harvester is not registered, because of it's EnergyRequirement");
             }
             energyRequirement = value;
         }
@@ -34,7 +34,7 @@ public abstract class Harvester
         {
             if (value < 0)
             {
-                throw new ArgumentException("Negative Ore Output");
+                throw new ArgumentException("Harvester is not registered, because of it's OreOutput");
             }
             oreOutput = value;
         }

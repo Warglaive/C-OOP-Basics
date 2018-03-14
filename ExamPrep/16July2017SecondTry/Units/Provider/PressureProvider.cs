@@ -6,8 +6,7 @@ using System.Text;
 public class PressureProvider : Provider
 {
     public PressureProvider(string id, double energyOutput)
-        : base(id, energyOutput)
+        : base(id, energyOutput * 1.5)
     {
-        this.EnergyOutput = energyOutput * 1.5;
     }
 }

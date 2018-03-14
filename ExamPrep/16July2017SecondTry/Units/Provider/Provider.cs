@@ -2,26 +2,27 @@
 using System.Collections.Generic;
 using System.Text;
 
-public abstract class Provider
+
+public abstract class Provider : Unit
 {
-    private string Id { get; set; }
     private double energyOutput;
 
     protected Provider(string id, double energyOutput)
+        : base(id)
     {
-        this.Id = id;
         this.EnergyOutput = energyOutput;
     }
 
-    protected double EnergyOutput
+    public double EnergyOutput
     {
         get { return energyOutput; }
-        set
+        private set
         {
-            if (value >= 0 && value < 10000)
+            if (value < 0 || value >= 10000)
             {
-                energyOutput = value;
+                throw new ArgumentException("Provider is not registered, because of it's OreOutput");
             }
+            energyOutput = value;
         }
     }
 }
