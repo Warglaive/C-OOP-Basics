@@ -1,6 +1,6 @@
-﻿public class Hammer : Harvester
+﻿public class HammerHarvester : Harvester
 {
-    public Hammer(string id, double oreOutput, double energyRequirement)
+    public HammerHarvester(string id, double oreOutput, double energyRequirement)
         : base(id, oreOutput, energyRequirement)
     {
         this.OreOutput = oreOutput + oreOutput * 2;//200%

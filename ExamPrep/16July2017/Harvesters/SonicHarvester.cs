@@ -1,6 +1,6 @@
-﻿public class Sonic : Harvester
+﻿public class SonicHarvester : Harvester
 {
-    public Sonic(string id, double oreOutput, double energyRequirement,
+    public SonicHarvester(string id, double oreOutput, double energyRequirement,
         int sonicFactor)
         : base(id, oreOutput, energyRequirement)
     {

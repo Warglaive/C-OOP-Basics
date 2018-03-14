@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 public class DraftManager
 {
@@ -25,19 +26,19 @@ public class DraftManager
             if (type == "Sonic")
             {
                 //factory that return harvester
-                var sonicHarvesterFactory = new SonicHarvesterFactory();
+                var sonicHarvesterFactory = new HarvesterFactory();
                 var sonicFactor = int.Parse(arguments[4]);
-                var sonicHarvester = sonicHarvesterFactory.GenerateHarvester(id, oreOutput, energyRequirement, sonicFactor);
+                var sonicHarvester = sonicHarvesterFactory.GenerateSonicHarvester(id, oreOutput, energyRequirement, sonicFactor);
                 //add to list
                 harvesters.Add(sonicHarvester);
-                return $"Successfully registered {sonicHarvester.GetType().Name} Harvester - {sonicHarvester.Id}";
+                return $"Successfully registered Sonic Harvester - {sonicHarvester.Id}";
             }
             // if type == Hammer
-            var hammerHarvesterFactory = new HammerHarvesterFactory();
+            var hammerHarvesterFactory = new HarvesterFactory();
             var hammerHarvester = hammerHarvesterFactory.GenerateHammerHarvester(id, oreOutput, energyRequirement);
             //add to list
             harvesters.Add(hammerHarvester);
-            return $"Successfully registered {hammerHarvester.GetType().Name} Harvester - {hammerHarvester.Id}";
+            return $"Successfully registered Hammer Harvester - {hammerHarvester.Id}";
         }
         catch (Exception e)
         {
@@ -54,16 +55,16 @@ public class DraftManager
 
             if (type == "Solar")
             {
-                var solarProviderFactory = new SolarProviderFactory();
+                var solarProviderFactory = new ProviderFactory();
                 var solarProvider = solarProviderFactory.GenerateSolarProvider(id, energyRequirement);
                 //add to list
                 providers.Add(solarProvider);
-                return $"Successfully registered {solarProvider.GetType().Name} Provider - {solarProvider.Id}";
+                return $"Successfully registered Solar Provider - {solarProvider.Id}";
             }
             else //Pressure
             {
-                var pressureProviderFactory = new PressureProviderFactory();
-                var pressureProvider = pressureProviderFactory.PressureProviderGenerator(id, energyRequirement);
+                var pressureProviderFactory = new ProviderFactory();
+                var pressureProvider = pressureProviderFactory.GeneratePressureProvider(id, energyRequirement);
                 //add to list
                 providers.Add(pressureProvider);
                 return $"Successfully registered {pressureProvider.GetType().Name} Provider - {pressureProvider.Id}";
@@ -96,7 +97,17 @@ public class DraftManager
         {
             if (checkId == currentHarvester.Id)
             {
-                result += $"{currentHarvester.GetType().Name} Harvester - {checkId}"
+                var lengthToTake = currentHarvester.GetType().Name.Length - 9;
+                var currentType = currentHarvester.GetType().Name.Take(lengthToTake).ToList();
+
+                var type = string.Empty;
+
+                for (int i = 0; i < currentType.Count; i++)
+                {
+                    type += currentType[i];
+                }
+
+                result += $"{type} Harvester - {checkId}"
                     + Environment.NewLine
                     + $"Ore Output: {currentHarvester.OreOutput}"
                     + Environment.NewLine
@@ -109,7 +120,18 @@ public class DraftManager
         {
             if (checkId == currentProvider.Id)
             {
-                result += $"{currentProvider.GetType().Name} Provider - {checkId}"
+
+                var lengthToTake = currentProvider.GetType().Name.Length - 8;
+                var currentType = currentProvider.GetType().Name.Take(lengthToTake).ToList();
+
+                var type = string.Empty;
+
+                for (int i = 0; i < currentType.Count; i++)
+                {
+                    type += currentType[i];
+                }
+                //
+                result += $"{type} Provider - {checkId}"
                     + Environment.NewLine
                     + $"Energy Output: {currentProvider.EnergyOutput}";
                 return result;
