@@ -5,8 +5,8 @@ using System.Text;
 
 public abstract class Tyre
 {
-    protected string Name { get; set; }
-    private double Hardness { get; set; }
+    public string Name { get; }
+    private double Hardness { get; }
     private double degradation;
     //Upon each lap it’s degradation is reduced by the value of the hardness
     public virtual double Degradation
