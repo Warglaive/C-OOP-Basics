@@ -5,16 +5,24 @@ using System.Text;
 
 public abstract class Tyre
 {
-    public string Name { get; }
-    private double Hardness { get; }
     private double degradation;
-    //Upon each lap it’s degradation is reduced by the value of the hardness
+
+    protected Tyre(double hardness)
+    {
+        this.Hardness = hardness;
+        this.Degradation = 100;
+    }
+
+    public abstract string Name { get; }
+
+    public double Hardness { get; }
+
     public virtual double Degradation
     {
-        get { return degradation; }
+        get => this.degradation;
         protected set
         {
-            if (degradation < 0)
+            if (value < 0)
             {
                 throw new ArgumentException("Tyre blowed up");
             }
@@ -22,13 +30,7 @@ public abstract class Tyre
         }
     }
 
-    protected Tyre(string name, double hardness)
-    {
-        this.Name = name;
-        this.Hardness = hardness;
-        //
-        this.Degradation = 100;
-    }
+
 
     public virtual void ReduceDegradation()
     {
