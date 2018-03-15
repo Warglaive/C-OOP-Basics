@@ -22,7 +22,7 @@ public class UltrasoftTyre : Tyre
     public UltrasoftTyre(string name, double hardness)
     : base(name, hardness)
     {
-        this.Name = "Ultrasoft";
+        name = "Ultrasoft";
         //
         this.Degradation -= (hardness + this.Grip);
         if (this.Degradation < 30)

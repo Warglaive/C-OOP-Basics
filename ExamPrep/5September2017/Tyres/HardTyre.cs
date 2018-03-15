@@ -6,9 +6,8 @@ using System.Text;
 public class HardTyre : Tyre
 {
     public HardTyre(string name, double hardness)
-        : base(name, hardness)
+        : base("Hard", hardness)
     {
-        this.Name = "Hard";
     }
 }
 

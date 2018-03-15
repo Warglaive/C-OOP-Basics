@@ -37,7 +37,6 @@ public abstract class Driver
         protected set { fuelConsumptionPerKm = value; }
     }
 
-
     public virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
 
     protected Driver(string name, Car car, double fuelConsumptionPerKm)
