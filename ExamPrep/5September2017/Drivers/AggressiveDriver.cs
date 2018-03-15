@@ -10,5 +10,5 @@ public class AggressiveDriver : Driver
     {
     }
 
-    public override double Speed => base.Speed * 1.3;
+    protected override double Speed => base.Speed * 1.3;
 }

@@ -15,7 +15,7 @@ public abstract class Tyre
 
     public abstract string Name { get; }
 
-    public double Hardness { get; }
+    protected double Hardness { get; }
 
     public virtual double Degradation
     {
@@ -29,9 +29,6 @@ public abstract class Tyre
             degradation = value;
         }
     }
-
-
-
     public virtual void ReduceDegradation()
     {
         this.Degradation -= this.Hardness;

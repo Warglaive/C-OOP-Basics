@@ -5,9 +5,11 @@ using System.Text;
 
 public class HardTyre : Tyre
 {
-    public HardTyre(string name, double hardness)
-        : base("Hard", hardness)
+    public HardTyre(double hardness) 
+        : base(hardness)
     {
     }
+
+    public override string Name => "Hard";
 }
 

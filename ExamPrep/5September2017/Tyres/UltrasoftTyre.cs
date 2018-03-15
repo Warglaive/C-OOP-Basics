@@ -3,31 +3,33 @@
 
 public class UltrasoftTyre : Tyre
 {
-    //Positive property grip, floating point
-    private double grip;
+    private double degradation;
 
-    public double Grip
+    public UltrasoftTyre(double hardness, double grip)
+        : base(hardness)
     {
-        get { return grip; }
+        this.Grip = grip;
+    }
+
+    private double Grip { get; }
+
+    public override string Name => "Ultrasoft";
+
+    public override double Degradation
+    {
+        get => degradation;
         protected set
         {
-            if (value < 0)
+            if (value < 30)
             {
-                throw new ArgumentException("Grip is negative");
+                throw new ArgumentException("Blown tyre");
             }
-            grip = value;
+            degradation = value;
         }
     }
 
-    public UltrasoftTyre(string name, double hardness)
-    : base(name, hardness)
+    public override void ReduceDegradation()
     {
-        name = "Ultrasoft";
-        //
-        this.Degradation -= (hardness + this.Grip);
-        if (this.Degradation < 30)
-        {
-            throw new ArgumentException("UltrasoftTyre blows up, because of degradation < 30");
-        }
+        this.Degradation -= (this.Hardness + this.Grip);
     }
 }

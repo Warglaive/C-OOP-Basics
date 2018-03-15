@@ -9,7 +9,6 @@ public abstract class Driver
     private double totalTime;
     private Car car;
     private double fuelConsumptionPerKm;
-    private double speed;
 
     public string Name
     {
@@ -20,7 +19,7 @@ public abstract class Driver
     public double TotalTime
     {
         get { return totalTime; }
-        protected set { totalTime = value; }
+        private set { totalTime = value; }
     }
 
 
@@ -34,10 +33,10 @@ public abstract class Driver
     public double FuelConsumptionPerKm
     {
         get { return fuelConsumptionPerKm; }
-        protected set { fuelConsumptionPerKm = value; }
+        private set { fuelConsumptionPerKm = value; }
     }
 
-    public virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
+    protected virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
 
     protected Driver(string name, Car car, double fuelConsumptionPerKm)
     {

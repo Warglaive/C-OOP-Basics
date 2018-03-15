@@ -24,7 +24,7 @@ public class Car
     private double fuelAmount;
     public double FuelAmount
     {
-        get { return fuelAmount; }
+        get => fuelAmount;
         private set
         {
             if (value > FuelCapacity)
