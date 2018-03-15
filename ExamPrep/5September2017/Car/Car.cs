@@ -8,21 +8,20 @@ public class Car
     private const int MinFuel = 0;
 
     private int hp;
-
     public int Hp
     {
         get { return hp; }
         private set { hp = value; }
     }
-    private double fuelAmount;
-    private Tyre tyre;
 
+    private Tyre tyre;
     public Tyre Tyre
     {
         get { return tyre; }
         private set { tyre = value; }
     }
 
+    private double fuelAmount;
     public double FuelAmount
     {
         get { return fuelAmount; }
