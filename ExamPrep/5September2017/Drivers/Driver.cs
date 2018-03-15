@@ -6,6 +6,10 @@ using System.Text;
 public abstract class Driver
 {
     private string name;
+    private double totalTime;
+    private Car car;
+    private double fuelConsumptionPerKm;
+    private double speed;
 
     public string Name
     {
@@ -13,15 +17,12 @@ public abstract class Driver
         private set { name = value; }
     }
 
-    private double totalTime;
-
     public double TotalTime
     {
         get { return totalTime; }
         protected set { totalTime = value; }
     }
 
-    private Car car;
 
     public Car Car
     {
@@ -29,7 +30,6 @@ public abstract class Driver
         private set { car = value; }
     }
 
-    private double fuelConsumptionPerKm;
 
     public double FuelConsumptionPerKm
     {
@@ -37,21 +37,13 @@ public abstract class Driver
         protected set { fuelConsumptionPerKm = value; }
     }
 
-    private double speed;
 
-    public double Speed
-    {
-        get { return speed; }
-        protected set
-        {
-            //Speed = “(car’s Hp + tyre’s degradation) / car’s fuelAmount”
-            speed = value;
-        }
-    }
+    public virtual double Speed => (this.Car.Hp + this.Car.Tyre.Degradation) / this.Car.FuelAmount;
 
-    protected Driver(string name, Car car)
+    protected Driver(string name, Car car, double fuelConsumptionPerKm)
     {
         this.Name = name;
         this.Car = car;
+        this.FuelConsumptionPerKm = fuelConsumptionPerKm;
     }
 }
