@@ -15,7 +15,7 @@ public abstract class Harvester
         {
             if (value < 0 || value > MaxEnergyRequirement)
             {
-                throw new ArgumentException("Energy Requirement invalid");
+                throw new ArgumentException("Harvester is not registered, because of it's EnergyRequirement");
             }
             energyRequirement = value;
         }
@@ -28,7 +28,7 @@ public abstract class Harvester
         {
             if (value < 0)
             {
-                throw new ArgumentException("Ore Output negative");
+                throw new ArgumentException("Harvester is not registered, because of it's OreOutput");
             }
             oreOutput = value;
         }

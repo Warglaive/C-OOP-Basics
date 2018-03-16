@@ -28,8 +28,8 @@ public class UltrasoftTyre : Tyre
         }
     }
 
-    public override void ReduceDegradation()
-    {
-        this.Degradation -= (this.Hardness + this.Grip);
-    }
+    //public override void ReduceDegradation()
+    //{
+    //    this.Degradation -= (this.Hardness + this.Grip);
+    //}
 }

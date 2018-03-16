@@ -21,7 +21,7 @@ public abstract class Provider
         {
             if (value < 0 || value >= 10000)
             {
-                throw new ArgumentException("Energy Output invalid");
+                throw new ArgumentException("Provider is not registered, because of it's EnergyOutput");
             }
             energyOutput = value;
         }
