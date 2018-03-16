@@ -29,8 +29,4 @@ public abstract class Tyre
             degradation = value;
         }
     }
-    public virtual void ReduceDegradation()
-    {
-        this.Degradation -= this.Hardness;
-    }
 }
