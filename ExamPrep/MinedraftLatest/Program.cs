@@ -27,6 +27,12 @@ public class Program
                     case "Day":
                         Console.WriteLine(draftManager.Day());
                         break;
+                    case "Mode":
+                        Console.WriteLine(draftManager.Mode(arguments));
+                        break;
+                    case "Check":
+                        Console.WriteLine(draftManager.Check(arguments));
+                        break;
                 }
             }
             catch (Exception e)
@@ -35,5 +41,6 @@ public class Program
             }
             input = Console.ReadLine();
         }
+        Console.WriteLine(draftManager.ShutDown());
     }
 }

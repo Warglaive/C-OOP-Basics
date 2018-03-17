@@ -9,5 +9,9 @@ public class SonicHarvester : Harvester
         , double energyRequirement, int sonicFactor)
         : base(id, oreOutput, energyRequirement / sonicFactor)
     {
+        if (energyRequirement > 10000)
+        {
+            throw new ArgumentException("Harvester is not registered, because of it's EnergyRequirement");
+        }
     }
 }
