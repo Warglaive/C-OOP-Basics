@@ -1,6 +1,7 @@
 ﻿using System;
 using DungeonsAndCodeWizards.Contracts;
 using DungeonsAndCodeWizards.Exceptions;
+using DungeonsAndCodeWizards.Inventories;
 using DungeonsAndCodeWizards.Items;
 
 namespace DungeonsAndCodeWizards.Characters
@@ -129,6 +130,17 @@ namespace DungeonsAndCodeWizards.Characters
             {
                 this.Bag.AddItem(item);
             }
+        }
+
+        protected Character(string name, double health, double armor
+            , double abilityPoints, Bag bag, Faction faction)
+        {
+            this.Name = name;
+            this.Health = health;
+            this.Armor = armor;
+            this.AbilityPoints = abilityPoints;
+            this.Bag = bag;
+            this.Faction = faction;
         }
     }
 }
