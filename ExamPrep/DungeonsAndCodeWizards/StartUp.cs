@@ -1,4 +1,4 @@
-﻿using DungeonsAndCodeWizards.Entities;
+﻿using DungeonsAndCodeWizards.Core;
 
 namespace DungeonsAndCodeWizards
 {
