@@ -3,7 +3,7 @@
     public class Backpack : Bag
     {
         private const int capacity = 100;
-        protected Backpack()
+        public Backpack()
             : base(capacity)
         {
         }

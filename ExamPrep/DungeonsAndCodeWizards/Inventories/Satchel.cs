@@ -4,7 +4,7 @@
     {
         private const int capacity = 20;
 
-        protected Satchel()
+        public Satchel()
             : base(capacity)
         {
         }
