@@ -34,5 +34,9 @@ namespace DungeonsAndCodeWizards.Exceptions
             var factionName = faction.ToString();
             throw new ArgumentException($"Friendly fire! Both characters are from {factionName} faction!");
         }
+        public static void CannonHealEnemy()
+        {
+            throw new InvalidOperationException($"Cannot heal enemy character!");
+        }
     }
 }
