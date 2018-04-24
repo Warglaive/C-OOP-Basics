@@ -20,5 +20,9 @@ namespace DungeonsAndCodeWizards.Exceptions
         {
             throw new ArgumentException($"No item with name {name} in bag!");
         }
+        public static Exception NameCannonBeNullOrWhiteSpace()
+        {
+            throw new ArgumentException("Name cannot be null or whitespace!");
+        }
     }
 }
