@@ -7,6 +7,8 @@ namespace DungeonsAndCodeWizards.Entities
     {
         public void Run()
         {
+            var test = new Satchel();
+            var type = test.GetType();
         }
     }
 }

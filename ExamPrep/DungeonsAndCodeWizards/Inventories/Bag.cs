@@ -13,7 +13,7 @@ namespace DungeonsAndCodeWizards.Inventories
         private const int DefaultCapacity = 100;
 
         public int Capacity { get; set; }
-        public double Load => this.Items.Sum(i => i.Weigth);
+        public double Load => this.Items.Sum(i => i.Weight);
 
         public IReadOnlyCollection<Item> Items => this.AddedItems;
 
@@ -22,7 +22,7 @@ namespace DungeonsAndCodeWizards.Inventories
         public void AddItem(Item item)
         {
 
-            var currentLoad = this.Items.Sum(i => i.Weigth) + item.Weigth;
+            var currentLoad = this.Items.Sum(i => i.Weight) + item.Weight;
             if (currentLoad > this.Capacity)
             {
                 Error.BagIsFull();

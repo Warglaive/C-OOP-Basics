@@ -4,7 +4,7 @@ namespace DungeonsAndCodeWizards.Contracts
 {
     public interface IItem
     {
-        int Weigth { get; }
+        int Weight { get; }
         void AffectCharacter(Character character);
     }
 }
