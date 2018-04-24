@@ -79,7 +79,6 @@ namespace DungeonsAndCodeWizards.Characters
             {
                 //careful
                 this.Armor -= hitPoints;
-                //hitPoints -= hitPoints;
                 if (this.Armor < 0)
                 {
                     this.Health -= Math.Abs(this.Armor);
@@ -93,27 +92,43 @@ namespace DungeonsAndCodeWizards.Characters
 
         public void Rest()
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive)
+            {
+                this.Health += this.BaseHealth * this.RestHealMultiplier;
+            }
         }
 
         public void UseItem(Item item)
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive)
+            {
+                item.AffectCharacter(this);
+            }
         }
 
         public void UseItemOn(Item item, Character character)
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive && character.IsAlive)
+            {
+                item.AffectCharacter(character);
+            }
         }
 
         public void GiveCharacterItem(Item item, Character character)
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive && character.IsAlive)
+            {
+                //bug maybe
+                character.ReceiveItem(item);
+            }
         }
 
         public void ReceiveItem(Item item)
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive)
+            {
+                this.Bag.AddItem(item);
+            }
         }
     }
 }

@@ -35,10 +35,12 @@ namespace DungeonsAndCodeWizards.Inventories
 
         public Item GetItem(string name)
         {
+            //need refactor
             if (this.Items.Count == 0)
             {
                 Error.BagIsEmpty();
             }
+
             var type = Assembly.GetCallingAssembly().GetType(name);
             var itemName = (Item)Activator.CreateInstance(type);
 
