@@ -1,5 +1,6 @@
 ﻿using DungeonsAndCodeWizards.Characters;
 using DungeonsAndCodeWizards.Contracts;
+using DungeonsAndCodeWizards.Exceptions;
 using DungeonsAndCodeWizards.Inventories;
 
 namespace DungeonsAndCodeWizards.Classes
@@ -18,7 +19,23 @@ namespace DungeonsAndCodeWizards.Classes
 
         public void Attack(Character character)
         {
-            throw new System.NotImplementedException();
+            if (this.IsAlive && character.IsAlive)
+            {
+                //bug maybe
+                if (this.Equals(character))
+                {
+                    Error.CannonAttackSelf();
+                }
+                if (this.Faction.Equals(character.Faction))
+                {
+                    Error.FriendlyFireError(this.Faction);
+                }
+                character.TakeDamage(this.AbilityPoints);
+            }
+            else
+            {
+                Error.MustBeAliveToPerformAction();
+            }
         }
     }
 }
