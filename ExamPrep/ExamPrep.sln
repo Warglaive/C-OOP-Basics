@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MinedraftLatest", "Minedraf
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrandPrix05SeptemberExamOOPBasics", "GrandPrix05SeptemberExamOOPBasics\GrandPrix05SeptemberExamOOPBasics.csproj", "{9D9CE755-11DF-4D1A-BE3E-26B45CB46C05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonsAndCodeWizards", "..\..\CSharp-OOP-Advanced\DungeonsAndCodeWizards\DungeonsAndCodeWizards.csproj", "{B8EFD24C-9AEC-4279-9109-E586654EF2B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DungeonsAndCodeWizards", "DungeonsAndCodeWizards\DungeonsAndCodeWizards.csproj", "{4BD66336-9FA3-48AE-A547-B2D47DF43986}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,10 @@ Global
 		{9D9CE755-11DF-4D1A-BE3E-26B45CB46C05}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D9CE755-11DF-4D1A-BE3E-26B45CB46C05}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D9CE755-11DF-4D1A-BE3E-26B45CB46C05}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B8EFD24C-9AEC-4279-9109-E586654EF2B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B8EFD24C-9AEC-4279-9109-E586654EF2B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B8EFD24C-9AEC-4279-9109-E586654EF2B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B8EFD24C-9AEC-4279-9109-E586654EF2B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BD66336-9FA3-48AE-A547-B2D47DF43986}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BD66336-9FA3-48AE-A547-B2D47DF43986}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BD66336-9FA3-48AE-A547-B2D47DF43986}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BD66336-9FA3-48AE-A547-B2D47DF43986}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
