@@ -34,19 +34,19 @@ namespace DungeonsAndCodeWizards.Inventories
 
         public IItem GetItem(string name)
         {
-            //need refactor
             if (!this.Items.Any())
             {
                 Error.BagIsEmpty();
             }
-            //remove reflection
-            var type = Assembly.GetCallingAssembly().GetType(name);
-            var itemName = (Item)Activator.CreateInstance(type);
+            //possible bug
+            var itemName = this.Items
+                .First(i => i.GetType().Name == name);
 
             if (name != itemName.ToString())
             {
                 Error.NoItemWithThatName(name);
             }
+
             this.AddedItems.Remove(itemName);
             return itemName;
         }
