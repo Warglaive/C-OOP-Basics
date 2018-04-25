@@ -7,7 +7,7 @@ namespace DungeonsAndCodeWizards.Items
     {
         public int Weight { get; set; }
 
-        public abstract void AffectCharacter(Character character);
+        public abstract void AffectCharacter(ICharacter character);
 
         protected Item(int weight)
         {

@@ -1,4 +1,5 @@
 ﻿using DungeonsAndCodeWizards.Characters;
+using DungeonsAndCodeWizards.Contracts;
 using DungeonsAndCodeWizards.Exceptions;
 
 namespace DungeonsAndCodeWizards.Items
@@ -14,7 +15,7 @@ namespace DungeonsAndCodeWizards.Items
 
         }
 
-        public override void AffectCharacter(Character character)
+        public override void AffectCharacter(ICharacter character)
         {
             if (character.IsAlive)
             {

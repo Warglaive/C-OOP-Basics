@@ -58,5 +58,13 @@ namespace DungeonsAndCodeWizards.Exceptions
         {
             throw new ArgumentException($"No items left in pool!");
         }
+        public static void CannonAttack(string attackerName)
+        {
+            throw new ArgumentException($"{attackerName} cannot attack!");
+        }
+        public static void CannonHeal(string healerName)
+        {
+            throw new ArgumentException($"{healerName} cannot heal!");
+        }
     }
 }

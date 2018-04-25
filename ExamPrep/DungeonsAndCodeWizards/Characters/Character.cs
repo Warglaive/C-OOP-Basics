@@ -1,7 +1,6 @@
 ﻿using System;
 using DungeonsAndCodeWizards.Contracts;
 using DungeonsAndCodeWizards.Exceptions;
-using DungeonsAndCodeWizards.Inventories;
 
 namespace DungeonsAndCodeWizards.Characters
 {
@@ -106,7 +105,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void UseItemOn(IItem item, Character character)
+        public void UseItemOn(IItem item, ICharacter character)
         {
             if (this.IsAlive && character.IsAlive)
             {
@@ -114,7 +113,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void GiveCharacterItem(IItem item, Character character)
+        public void GiveCharacterItem(IItem item, ICharacter character)
         {
             if (this.IsAlive && character.IsAlive)
             {
@@ -132,7 +131,7 @@ namespace DungeonsAndCodeWizards.Characters
         }
 
         protected Character(string name, double health, double armor
-            , double abilityPoints, Bag bag, Faction faction)
+            , double abilityPoints, IBag bag, Faction faction)
         {
             this.Name = name;
             this.Health = health;

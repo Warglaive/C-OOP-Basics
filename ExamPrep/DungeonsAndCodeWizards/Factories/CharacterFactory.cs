@@ -8,7 +8,7 @@ namespace DungeonsAndCodeWizards.Factories
 {
     public class CharacterFactory
     {
-        public ICharacter CreateCharacter(Faction faction
+        public Character CreateCharacter(Faction faction
             , string characterClass, string name)
         {
             Character currentChar = null;
