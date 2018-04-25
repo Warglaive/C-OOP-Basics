@@ -50,5 +50,13 @@ namespace DungeonsAndCodeWizards.Exceptions
         {
             throw new ArgumentException($"Invalid item \"{itemName}\"!");
         }
+        public static void CharacterNotFound(string charName)
+        {
+            throw new ArgumentException($"Character {charName} not found!");
+        }
+        public static void NoItemsInThePool()
+        {
+            throw new ArgumentException($"No items left in pool!");
+        }
     }
 }

@@ -2,7 +2,6 @@
 using DungeonsAndCodeWizards.Contracts;
 using DungeonsAndCodeWizards.Exceptions;
 using DungeonsAndCodeWizards.Inventories;
-using DungeonsAndCodeWizards.Items;
 
 namespace DungeonsAndCodeWizards.Characters
 {
@@ -99,7 +98,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void UseItem(Item item)
+        public void UseItem(IItem item)
         {
             if (this.IsAlive)
             {
@@ -107,7 +106,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void UseItemOn(Item item, Character character)
+        public void UseItemOn(IItem item, Character character)
         {
             if (this.IsAlive && character.IsAlive)
             {
@@ -115,7 +114,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void GiveCharacterItem(Item item, Character character)
+        public void GiveCharacterItem(IItem item, Character character)
         {
             if (this.IsAlive && character.IsAlive)
             {
@@ -124,7 +123,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public void ReceiveItem(Item item)
+        public void ReceiveItem(IItem item)
         {
             if (this.IsAlive)
             {

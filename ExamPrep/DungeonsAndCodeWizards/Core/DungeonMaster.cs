@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DungeonsAndCodeWizards.Characters;
 using DungeonsAndCodeWizards.Contracts;
 using DungeonsAndCodeWizards.Exceptions;
@@ -53,7 +54,20 @@ namespace DungeonsAndCodeWizards.Core
 
         public string PickUpItem(string[] args)
         {
-            throw new NotImplementedException();
+            var characterName = args[0];
+            if (this.party.All(c => c.Name != characterName))
+            {
+                Error.CharacterNotFound(characterName);
+            }
+            if (!this.itemPool.Any())
+            {
+                Error.NoItemsInThePool();
+            }
+            var currentCharacter = (ICharacter)this.party.Where(c => c.Name == characterName);
+            var poolLastIndex = this.itemPool.Count - 1;
+            currentCharacter.ReceiveItem(this.itemPool[poolLastIndex]);
+            //possible bug
+            return $"{characterName} picked up {this.itemPool[poolLastIndex].GetType().Name}!";
         }
 
         public string UseItem(string[] args)

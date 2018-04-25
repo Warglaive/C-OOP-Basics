@@ -8,9 +8,9 @@ namespace DungeonsAndCodeWizards.Contracts
         int Capacity { get; set; }
         //The sum of the weights of the items in the bag.
         double Load { get; }
-        IReadOnlyCollection<Item> Items { get; }
+        IReadOnlyCollection<IItem> Items { get; }
 
-        void AddItem(Item item);
-        Item GetItem(string name);
+        void AddItem(IItem item);
+        IItem GetItem(string name);
     }
 }

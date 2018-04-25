@@ -18,9 +18,9 @@ namespace DungeonsAndCodeWizards.Contracts
         //behavior
         void TakeDamage(double hitPoints);
         void Rest();
-        void UseItem(Item item);
-        void UseItemOn(Item item, Character character);
-        void GiveCharacterItem(Item item, Character character);
-        void ReceiveItem(Item item);
+        void UseItem(IItem item);
+        void UseItemOn(IItem item, Character character);
+        void GiveCharacterItem(IItem item, Character character);
+        void ReceiveItem(IItem item);
     }
 }

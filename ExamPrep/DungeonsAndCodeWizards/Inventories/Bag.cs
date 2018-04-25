@@ -15,13 +15,12 @@ namespace DungeonsAndCodeWizards.Inventories
         public int Capacity { get; set; }
         public double Load => this.Items.Sum(i => i.Weight);
 
-        public IReadOnlyCollection<Item> Items => this.AddedItems;
+        public IReadOnlyCollection<IItem> Items => this.AddedItems;
 
-        private List<Item> AddedItems;
+        private List<IItem> AddedItems;
 
-        public void AddItem(Item item)
+        public void AddItem(IItem item)
         {
-
             var currentLoad = this.Items.Sum(i => i.Weight) + item.Weight;
             if (currentLoad > this.Capacity)
             {
@@ -33,14 +32,14 @@ namespace DungeonsAndCodeWizards.Inventories
             }
         }
 
-        public Item GetItem(string name)
+        public IItem GetItem(string name)
         {
             //need refactor
-            if (this.Items.Count == 0)
+            if (!this.Items.Any())
             {
                 Error.BagIsEmpty();
             }
-
+            //remove reflection
             var type = Assembly.GetCallingAssembly().GetType(name);
             var itemName = (Item)Activator.CreateInstance(type);
 
@@ -54,7 +53,7 @@ namespace DungeonsAndCodeWizards.Inventories
         //bullshit
         protected Bag(int capacity = DefaultCapacity)
         {
-            this.AddedItems = new List<Item>();
+            this.AddedItems = new List<IItem>();
             this.Capacity = capacity;
         }
     }
