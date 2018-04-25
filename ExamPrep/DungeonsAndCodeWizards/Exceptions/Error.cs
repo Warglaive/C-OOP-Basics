@@ -38,5 +38,17 @@ namespace DungeonsAndCodeWizards.Exceptions
         {
             throw new InvalidOperationException($"Cannot heal enemy character!");
         }
+        public static void InvalidFaction(string faction)
+        {
+            throw new ArgumentException($"Invalid faction \"{faction}\"!");
+        }
+        public static void InvalidCharacterType(string characterType)
+        {
+            throw new ArgumentException($"Invalid character characterType \"{characterType}\"!");
+        }
+        public static void InvalidItemType(string itemName)
+        {
+            throw new ArgumentException($"Invalid item \"{itemName}\"!");
+        }
     }
 }

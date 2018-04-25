@@ -1,35 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using DungeonsAndCodeWizards.Characters;
-using DungeonsAndCodeWizards.Classes;
+using DungeonsAndCodeWizards.Contracts;
+using DungeonsAndCodeWizards.Exceptions;
 using DungeonsAndCodeWizards.Factories;
+using DungeonsAndCodeWizards.Items;
 
 namespace DungeonsAndCodeWizards.Core
 {
     public class DungeonMaster
     {
-        private List<Character> party;
+        private List<ICharacter> party;
         private CharacterFactory characterFactory;
+        private ItemFactory itemFactory;
+        private List<IItem> itemPool;
 
         public DungeonMaster()
         {
-            this.party = new List<Character>();
+            this.party = new List<ICharacter>();
+            this.characterFactory = new CharacterFactory();
+            this.itemFactory = new ItemFactory();
+            this.itemPool = new List<IItem>();
         }
         public string JoinParty(string[] args)
         {
-            Faction faction;
-            Enum.TryParse<Faction>(args[0], out faction);
-            var characterClass = args[1];
-            var name = args[2];
-
-            var currentCharacter = characterFactory
-                .CreateCharacter(faction, characterClass, name);
-            //to do
+            if (Enum.TryParse<Faction>(args[0], out var faction))
+            {
+                var characterClass = args[1];
+                if (characterClass != "Warrior" && characterClass != "Cleric")
+                {
+                    Error.InvalidCharacterType(args[1]);
+                }
+                var name = args[2];
+                var currentCharacter = characterFactory
+                    .CreateCharacter(faction, characterClass, name);
+                this.party.Add(currentCharacter);
+            }
+            else
+            {
+                Error.InvalidFaction(args[0]);
+            }
+            return $"{args[2]} joined the party!";
         }
 
         public string AddItemToPool(string[] args)
         {
-            throw new NotImplementedException();
+            var itemName = args[0];
+            var currentItem = this.itemFactory.CreateItem(itemName);
+            this.itemPool.Add(currentItem);
+            return $"{itemName} added to pool.";
         }
 
         public string PickUpItem(string[] args)
