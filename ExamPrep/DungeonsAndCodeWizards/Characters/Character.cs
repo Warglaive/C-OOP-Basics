@@ -25,7 +25,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public double BaseHealth { get; }
+        public abstract double BaseHealth { get; }
         private double health;
 
         public double Health
@@ -45,7 +45,7 @@ namespace DungeonsAndCodeWizards.Characters
             }
         }
 
-        public double BaseArmor { get; }
+        public abstract double BaseArmor { get; }
         private double armor;
 
         public double Armor
@@ -134,8 +134,8 @@ namespace DungeonsAndCodeWizards.Characters
             , double abilityPoints, IBag bag, Faction faction)
         {
             this.Name = name;
-            this.Health = health;
-            this.Armor = armor;
+            this.health = health;
+            this.armor = armor;
             this.AbilityPoints = abilityPoints;
             this.Bag = bag;
             this.Faction = faction;

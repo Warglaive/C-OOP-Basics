@@ -7,13 +7,10 @@ namespace DungeonsAndCodeWizards.Classes
 {
     public class Warrior : Character, IAttackable
     {
-        private const double baseHealth = 100;
-        private const double baseArmor = 50;
-        private const double abilityPoints = 40;
-        private static readonly Bag bag = new Satchel();
-
+        private double warriorBaseHealth = 100d;
+        private double warriorBaseArmor = 50d;
         public Warrior(string name, Faction faction)
-            : base(name, baseHealth, baseArmor, abilityPoints, bag, faction)
+            : base(name, 100, 50, 40, new Satchel(), faction)
         {
         }
 
@@ -37,5 +34,8 @@ namespace DungeonsAndCodeWizards.Classes
                 Error.MustBeAliveToPerformAction();
             }
         }
+
+        public override double BaseHealth => this.warriorBaseHealth;
+        public override double BaseArmor => this.warriorBaseArmor;
     }
 }

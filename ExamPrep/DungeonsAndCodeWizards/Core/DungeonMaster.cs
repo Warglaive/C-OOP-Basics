@@ -66,7 +66,7 @@ namespace DungeonsAndCodeWizards.Core
                 Error.NoItemsInThePool();
             }
             //bug maybe
-            var currentCharacter = (Character)this.party.Where(c => c.Name == characterName);
+            var currentCharacter = (Character)this.party.FirstOrDefault(c => c.Name == characterName);
             var poolLastIndex = this.itemPool.Count - 1;
             currentCharacter.ReceiveItem(this.itemPool[poolLastIndex]);
             //possible bug

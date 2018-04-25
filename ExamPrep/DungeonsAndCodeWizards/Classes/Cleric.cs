@@ -7,13 +7,10 @@ namespace DungeonsAndCodeWizards.Classes
 {
     public class Cleric : Character, IHealable
     {
-        private const double baseHealth = 50;
-        private const double baseArmor = 25;
-        private const double abilityPoints = 40;
-        private static readonly Bag bag = new Backpack();
-
+        private double clericBaseHealth = 50d;
+        private double clericBaseArmor = 25d;
         public Cleric(string name, Faction faction)
-            : base(name, baseHealth, baseArmor, abilityPoints, bag, faction)
+            : base(name, 50, 25, 40, new Backpack(), faction)
         {
         }
 
@@ -28,5 +25,8 @@ namespace DungeonsAndCodeWizards.Classes
                 character.Health += this.AbilityPoints;
             }
         }
+
+        public override double BaseHealth => this.clericBaseHealth;
+        public override double BaseArmor => this.clericBaseArmor;
     }
 }
